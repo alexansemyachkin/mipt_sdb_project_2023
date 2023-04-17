@@ -1,8 +1,10 @@
 package ru.mipt.rea.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class Report {
 
     @Id
@@ -13,9 +15,11 @@ public class Report {
     private int mark;
 
     @ManyToOne
-    @JoinColumn(name="studentId")
+    @JoinColumn(name = "studentId")
     private Student student;
 
-
+    @ManyToOne
+    @JoinColumn(name = "examID")
+    private Exam exam;
 
 }

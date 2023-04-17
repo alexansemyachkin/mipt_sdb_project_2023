@@ -1,12 +1,13 @@
 package ru.mipt.rea.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
+@Data
 public class Examiner {
 
     @Id
@@ -17,50 +18,19 @@ public class Examiner {
     private String name;
 
     @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
     private Timestamp birthDate;
 
+    @Column (nullable = false)
     private String department;
 
-    public int getId() {
-        return examinerId;
-    }
+    @ManyToMany
+    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "examinerId"), inverseJoinColumns = @JoinColumn(name = "examId"))
+    private List<Exam> examList;
 
-    public void setId(int examinerId) {
-        this.examinerId = examinerId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Timestamp getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Timestamp birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
 }

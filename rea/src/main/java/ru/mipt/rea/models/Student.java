@@ -1,14 +1,13 @@
 package ru.mipt.rea.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+@Data
 public class Student {
 
     @Id
@@ -17,6 +16,9 @@ public class Student {
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     private String password;
@@ -30,61 +32,11 @@ public class Student {
 
     private int group;
 
-    @OneToMany(mappedBy="student")
+    @OneToMany(mappedBy = "student")
     private List<Report> reportList;
 
-    public int getStudentId() {
-        return studentId;
-    }
+    @ManyToMany
+    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "studentId"), inverseJoinColumns = @JoinColumn(name = "examId"))
+    private List<Exam> examList;
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public Timestamp getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Timestamp birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public int getCourse() {
-        return course;
-    }
-
-    public void setCourse(int course) {
-        this.course = course;
-    }
-
-    public String getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
-    }
-
-    public int getGroup() {
-        return group;
-    }
-
-    public void setGroup(int group) {
-        this.group = group;
-    }
 }
