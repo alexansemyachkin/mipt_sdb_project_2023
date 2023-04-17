@@ -11,7 +11,7 @@ public class Student {
 
     @Id
     @Column(nullable = false)
-    private int id;
+    private int studentId;
 
     @Column(nullable = false)
     private String name;
@@ -29,12 +29,12 @@ public class Student {
     private int group;
 
 
-    public int getId() {
-        return id;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {

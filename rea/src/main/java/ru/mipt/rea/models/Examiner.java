@@ -11,7 +11,7 @@ public class Examiner {
 
     @Id
     @Column(nullable = false)
-    private int id;
+    private int examinerId;
 
     @Column(nullable = false)
     private String name;
@@ -25,11 +25,11 @@ public class Examiner {
     private String department;
 
     public int getId() {
-        return id;
+        return examinerId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int examinerId) {
+        this.examinerId = examinerId;
     }
 
     public String getName() {
