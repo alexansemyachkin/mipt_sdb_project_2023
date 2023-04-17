@@ -33,7 +33,7 @@ public class Student {
     private String faculty;
 
     @Column(nullable = false)
-    private int group;
+    private int groupNumber;
 
     @OneToMany(mappedBy = "student")
     private List<Report> reportList;
