@@ -26,10 +26,13 @@ public class Student {
     @Column(nullable = false)
     private Timestamp birthDate;
 
+    @Column(nullable = false)
     private int course;
 
+    @Column(nullable = false)
     private String faculty;
 
+    @Column(nullable = false)
     private int group;
 
     @OneToMany(mappedBy = "student")
