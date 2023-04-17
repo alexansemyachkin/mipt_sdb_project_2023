@@ -13,10 +13,13 @@ public class Examiner {
     @Column(nullable = false)
     private int id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private Timestamp birthDate;
 
     private String department;
