@@ -3,8 +3,10 @@ package ru.mipt.rea.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -28,6 +30,8 @@ public class Student {
 
     private int group;
 
+    @OneToMany(mappedBy="student")
+    private List<Report> reportList;
 
     public int getStudentId() {
         return studentId;
