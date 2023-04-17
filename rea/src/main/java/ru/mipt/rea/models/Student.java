@@ -2,7 +2,6 @@ package ru.mipt.rea.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import java.sql.Timestamp;
@@ -43,6 +42,13 @@ public class Student {
         this.name = name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public Timestamp getBirthDate() {
         return birthDate;
     }
