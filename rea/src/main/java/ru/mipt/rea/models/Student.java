@@ -8,23 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Student {
-
-    @Id
-    @Column(nullable = false)
-    private int studentId;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private Timestamp birthDate;
+public class Student extends User {
 
     @Column(nullable = false)
     private int course;
@@ -43,9 +27,9 @@ public class Student {
     private List<Exam> examList;
 
 
-    public Student (int studentId, String name, String email, String password, Timestamp birthDate,
+    public Student (int userId, String name, String email, String password, Timestamp birthDate,
                     int course, String faculty, int groupNumber) {
-        this.setStudentId(studentId);
+        this.setUserId(userId);
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);

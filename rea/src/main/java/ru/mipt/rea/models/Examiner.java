@@ -8,23 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Examiner {
-
-    @Id
-    @Column(nullable = false)
-    private int examinerId;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private Timestamp birthDate;
+public class Examiner extends User {
 
     @Column (nullable = false)
     private String department;
