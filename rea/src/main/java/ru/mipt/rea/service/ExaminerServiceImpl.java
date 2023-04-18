@@ -1,4 +1,4 @@
-package service;
+package ru.mipt.rea.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
