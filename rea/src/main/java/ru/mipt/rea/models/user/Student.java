@@ -39,7 +39,6 @@ public class Student extends AppUser {
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);
-        this.setBirthDate(birthDate);
         this.setCourse(course);
         this.setFaculty(faculty);
         this.setGroupNumber(groupNumber);
@@ -49,7 +48,6 @@ public class Student extends AppUser {
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);
-        this.setBirthDate(birthDate);
         this.setCourse(course);
         this.setFaculty(faculty);
         this.setGroupNumber(groupNumber);

@@ -27,7 +27,6 @@ public class Examiner extends AppUser {
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);
-        this.setBirthDate(birthDate);
         this.setDepartment(department);
     }
 
@@ -37,7 +36,6 @@ public class Examiner extends AppUser {
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);
-        this.setBirthDate(birthDate);
         this.setDepartment(department);
     }
 
