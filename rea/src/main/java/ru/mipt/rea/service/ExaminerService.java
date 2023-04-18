@@ -20,7 +20,6 @@ public class ExaminerService implements UserService<Examiner, ExaminerDTO>{
                 examinerDTO.getName(),
                 examinerDTO.getEmail(),
                 passwordEncoder.encode(examinerDTO.getPassword()),
-                examinerDTO.getBirthDate(),
                 examinerDTO.getDepartment()
         );
         return examinerRepo.save(examiner);
@@ -32,7 +31,6 @@ public class ExaminerService implements UserService<Examiner, ExaminerDTO>{
                 examinerDTO.getName(),
                 examinerDTO.getEmail(),
                 passwordEncoder.encode(examinerDTO.getPassword()),
-                examinerDTO.getBirthDate(),
                 examinerDTO.getDepartment()
         );
         return examinerRepo.save(examiner);

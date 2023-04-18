@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import ru.mipt.rea.models.other.Exam;
 import ru.mipt.rea.models.other.Report;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -33,8 +32,7 @@ public class Student extends AppUser {
     private List<Exam> examList;
 
 
-    public Student (int id, String name, String email, String password, Timestamp birthDate,
-                    int course, String faculty, int groupNumber) {
+    public Student (int id, String name, String email, String password, int course, String faculty, int groupNumber) {
         this.setId(id);
         this.setName(name);
         this.setEmail(email);
@@ -43,8 +41,7 @@ public class Student extends AppUser {
         this.setFaculty(faculty);
         this.setGroupNumber(groupNumber);
     }
-    public Student (String name, String email, String password, Timestamp birthDate,
-                    int course, String faculty, int groupNumber) {
+    public Student (String name, String email, String password, int course, String faculty, int groupNumber) {
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);
