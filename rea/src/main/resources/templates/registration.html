@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Форма регистрации</title>
+</head>
+<body>
+<h2>Выберите тип пользователя:</h2>
+<div>
+    <input type="radio" id="student" name="userType" value="student" checked>
+    <label for="student">Студент</label>
+</div>
+<div>
+    <input type="radio" id="teacher" name="userType" value="teacher">
+    <label for="teacher">Преподаватель</label>
+</div>
+<hr>
+<form id="studentRegistrationForm" name="studentForm" th:action="@{/registration}" method="post" th:object="${student}">
+    <h2> Please sign up</h2>
+    <p>
+        <input type="text" name="email" class="form-control" placeholder="Email" required="" autofocus="">
+    </p>
+    <p>
+        <input type="text" name="name" class="form-control" placeholder="Name" required="" autofocus="">
+    </p>
+    <p>
+        <input type="text" name="groupNumber" class="form-control" placeholder="Number of group" required="">
+    </p>
+    <p>
+        <input type="number" name="course" class="form-control" placeholder="Course" required="">
+    </p>
+    <p>
+        <input type="text" name="faculty" class="form-control" placeholder="Faculty" required="">
+    </p>
+    <p>
+        <input type="password" name="password" class="form-control" placeholder="Password" required="">
+    </p>
+    <input name="_csrf" type="hidden" value="fc582e0b-542e-4d61-8878-40db028a70be">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+</form>
+
+<form id="examinerRegistrationForm" name="" th:action="@{/registration}" method="post" th:object="${examiner}" style="display:none">
+    <h2 class="form-signin-heading"> Please sign up</h2>
+    <p>
+        <input type="text" name="email" class="form-control" placeholder="Email" required="" autofocus="">
+    </p>
+    <p>
+        <input type="text" name="name" class="form-control" placeholder="Name" required="" autofocus="">
+    </p>
+    <p>
+        <input type="text" name="department" class="form-control" placeholder="Department" required="">
+    </p>
+    <p>
+        <input type="password" name="password" class="form-control" placeholder="Password" required="">
+    </p>
+    <input name="_csrf" type="hidden" value="fc582e0b-542e-4d61-8878-40db028a70be">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+</form>
+
+
+
+<script>
+    // Получаем элементы формы и полей
+    const studentFields = document.getElementById("studentRegistrationForm");
+    const teacherFields = document.getElementById("examinerRegistrationForm");
+    const userTypeRadios = document.getElementsByName("userType");
+
+    // Добавляем обработчик события для изменения выбора типа пользователя
+    for (let i = 0; i < userTypeRadios.length; i++) {
+        userTypeRadios[i].addEventListener("change", function() {
+            if (this.value === "student") {
+                studentFields.style.display = "block";
+                teacherFields.style.display = "none";
+            } else {
+                studentFields.style.display = "none";
+                teacherFields.style.display = "block";
+            }
+        });
+    }
+</script>
+</body>
+</html>

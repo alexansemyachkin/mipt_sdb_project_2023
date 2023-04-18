@@ -27,8 +27,12 @@ public abstract class UserDTO {
     @Size(min = 8, max = 30, message = "Password must be between {min} and {max} characters")
     private String password;
 
+    private String role;
+
     public UserDTO(String email, String password) {
         this.setEmail(email);
         this.setPassword(password);
     }
+
+
 }
