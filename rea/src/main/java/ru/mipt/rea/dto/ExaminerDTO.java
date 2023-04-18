@@ -7,18 +7,16 @@ import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
-public class StudentDTO {
+public class ExaminerDTO {
 
-    private int studentId;
+    private int examinerId;
     private String name;
     private String email;
     private String password;
     private Timestamp birthDate;
-    private int course;
-    private String faculty;
-    private int groupNumber;
+    private String department;
 
-    public StudentDTO(String email, String password) {
+    public ExaminerDTO(String email, String password) {
         this.setEmail(email);
         this.setPassword(password);
     }
