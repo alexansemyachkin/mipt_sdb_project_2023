@@ -1,7 +1,8 @@
-package ru.mipt.rea.models;
+package ru.mipt.rea.models.other;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import ru.mipt.rea.models.user.Student;
 
 @Entity
 @Data

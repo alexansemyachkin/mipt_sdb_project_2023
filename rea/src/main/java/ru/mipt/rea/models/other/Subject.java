@@ -1,4 +1,4 @@
-package ru.mipt.rea.models;
+package ru.mipt.rea.models.other;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,7 +1,9 @@
-package ru.mipt.rea.models;
+package ru.mipt.rea.models.other;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import ru.mipt.rea.models.user.Examiner;
+import ru.mipt.rea.models.user.Student;
 
 import java.sql.Timestamp;
 import java.util.List;

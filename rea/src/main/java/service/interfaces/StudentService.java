@@ -1,7 +1,7 @@
 package service.interfaces;
 
 import ru.mipt.rea.dto.StudentDTO;
-import ru.mipt.rea.models.Student;
+import ru.mipt.rea.models.user.Student;
 
 public interface StudentService {
 
