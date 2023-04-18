@@ -3,35 +3,49 @@ package ru.mipt.rea.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import org.springframework.stereotype.Service;
+import ru.mipt.rea.service.ExaminerService;
+import ru.mipt.rea.service.StudentService;
 import ru.mipt.rea.service.UserService;
+
+import java.util.List;
 
 @Configuration
 public class WebSecurityConfig {
 
     @Autowired
-    private UserService userService;
+    private StudentService studentService;
+
+    @Autowired
+    private ExaminerService examinerService;
 
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public DaoAuthenticationProvider authenticationProvider(UserService userService) {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(new BCryptPasswordEncoder());
         return auth;
     }
 
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+    @Bean
+    public AuthenticationManager authenticationManager() {
+        DaoAuthenticationProvider studentAuth = authenticationProvider(studentService);
+        DaoAuthenticationProvider examinerAuth = authenticationProvider(examinerService);
+        return new ProviderManager(List.of(studentAuth, examinerAuth));
     }
+
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
