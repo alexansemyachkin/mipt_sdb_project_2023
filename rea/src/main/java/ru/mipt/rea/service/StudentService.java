@@ -1,7 +1,6 @@
 package ru.mipt.rea.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,9 +12,7 @@ import ru.mipt.rea.models.other.Role;
 import ru.mipt.rea.models.user.Student;
 import ru.mipt.rea.repos.StudentRepo;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -67,7 +64,8 @@ public class StudentService implements UserService<Student, StudentDTO>{
         if (student == null) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
-        return new org.springframework.security.core.userdetails.User(student.getEmail(), student.getPassword(), Collections.singleton(mapRolesToAuthorities(student.getRole())));
+        return new org.springframework.security.core.userdetails.User(student.getEmail(), student.getPassword(),
+                Collections.singleton(mapRolesToAuthorities(student.getRole())));
     }
 
     private SimpleGrantedAuthority mapRolesToAuthorities(Role role){

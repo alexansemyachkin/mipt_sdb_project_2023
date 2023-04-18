@@ -40,7 +40,7 @@ public class StudentRegistrationController {
             return "student_registration";
         }
         try {
-            studentService.registrate(studentDTO);
+            studentService.register(studentDTO);
         } catch (UserAlreadyExistsException exception) {
             model.addAttribute("studentDTo", studentDTO);
             return "redirect:/student_registration";

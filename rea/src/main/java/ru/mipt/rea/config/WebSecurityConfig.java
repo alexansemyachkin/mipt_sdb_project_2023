@@ -8,9 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import org.springframework.stereotype.Service;
-import ru.mipt.rea.service.StudentService;
 import ru.mipt.rea.service.UserService;
 
 @Configuration
