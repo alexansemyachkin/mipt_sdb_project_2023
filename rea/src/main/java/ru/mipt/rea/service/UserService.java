@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ru.mipt.rea.models.other.Role;
 
-@Service
 public interface UserService<T, V> extends UserDetailsService {
 
     T save(V dto);

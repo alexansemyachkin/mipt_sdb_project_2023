@@ -4,15 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class StartController {
+public class HomeController {
 
     @GetMapping("/")
     public String redirectToStart() {
-        return "redirect:/start";
+        return "redirect:/home";
     }
 
-    @GetMapping("/start")
+    @GetMapping("/home")
     public String start() {
-        return "start";
+        return "home";
     }
 }
