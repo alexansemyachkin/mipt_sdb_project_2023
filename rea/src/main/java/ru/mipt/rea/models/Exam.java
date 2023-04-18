@@ -12,24 +12,24 @@ public class Exam {
 
     @Id
     @Column(nullable = false)
-    private int examId;
+    private int id;
 
     @Column(nullable = false)
     private Timestamp date;
 
     @ManyToOne
-    @JoinColumn(name = "subjectId")
+    @JoinColumn(name = "subject_id")
     private Subject subject;
 
     @OneToMany(mappedBy = "exam")
     private List<Report> reportList;
 
     @ManyToMany
-    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "examId"), inverseJoinColumns = @JoinColumn(name = "examinerId"))
+    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "examiner_id"))
     private List<Examiner> examinerList;
 
     @ManyToMany
-    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "examId"), inverseJoinColumns = @JoinColumn(name = "studentId"))
+    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "studen_id"))
     private List<Student> studentList;
 
 }

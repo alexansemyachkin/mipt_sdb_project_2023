@@ -14,7 +14,7 @@ public class Subject {
 
     @Id
     @Column(nullable = false)
-    private int subjectId;
+    private int id;
 
     @Column(nullable = false)
     private String name;

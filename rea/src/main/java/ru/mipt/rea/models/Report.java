@@ -9,17 +9,17 @@ public class Report {
 
     @Id
     @Column(nullable = false)
-    private int reportId;
+    private int id;
 
     @Column(nullable = false)
     private int mark;
 
     @ManyToOne
-    @JoinColumn(name = "studentId")
+    @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "examID")
+    @JoinColumn(name = "exam_id")
     private Exam exam;
 
 }

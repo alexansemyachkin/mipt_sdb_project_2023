@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Student extends User {
+public class Student extends AppUser {
 
     @Column(nullable = false)
     private int course;
@@ -23,13 +23,13 @@ public class Student extends User {
     private List<Report> reportList;
 
     @ManyToMany
-    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "studentId"), inverseJoinColumns = @JoinColumn(name = "examId"))
+    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "exam_id"))
     private List<Exam> examList;
 
 
-    public Student (int userId, String name, String email, String password, Timestamp birthDate,
+    public Student (int id, String name, String email, String password, Timestamp birthDate,
                     int course, String faculty, int groupNumber) {
-        this.setUserId(userId);
+        this.setId(id);
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);

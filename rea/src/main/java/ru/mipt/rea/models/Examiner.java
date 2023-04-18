@@ -8,13 +8,13 @@ import java.util.List;
 
 @Entity
 @Data
-public class Examiner extends User {
+public class Examiner extends AppUser {
 
     @Column (nullable = false)
     private String department;
 
     @ManyToMany
-    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "examinerId"), inverseJoinColumns = @JoinColumn(name = "examId"))
+    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "examiner_id"), inverseJoinColumns = @JoinColumn(name = "exam_id"))
     private List<Exam> examList;
 
 }

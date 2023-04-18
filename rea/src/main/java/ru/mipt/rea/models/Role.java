@@ -3,19 +3,19 @@ package ru.mipt.rea.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
-public class Ticket {
+public class Role {
 
     @Id
     @Column(nullable = false)
     private int id;
 
     @Column(nullable = false)
-    private String question;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "subject_id")
-    private Subject subject;
-
+    @OneToMany(mappedBy = "role")
+    private List<AppUser> AppUserList;
 }

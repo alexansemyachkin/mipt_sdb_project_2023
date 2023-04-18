@@ -1,23 +1,18 @@
 package ru.mipt.rea.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-import java.util.List;
 
-@MappedSuperclass
-@NoArgsConstructor
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
-public abstract class User {
+public abstract class AppUser {
 
     @Id
     @Column(nullable = false)
-    private int userId;
+    private int id;
 
     @Column(nullable = false)
     private String name;
@@ -30,5 +25,9 @@ public abstract class User {
 
     @Column(nullable = false)
     private Timestamp birthDate;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 }
