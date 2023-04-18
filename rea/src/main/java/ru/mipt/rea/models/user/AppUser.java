@@ -1,9 +1,7 @@
 package ru.mipt.rea.models.user;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import ru.mipt.rea.models.other.Role;
 
 import java.sql.Timestamp;
@@ -25,9 +23,6 @@ public abstract class AppUser {
 
     @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
-    private Timestamp birthDate;
 
     @ManyToOne
     @JoinColumn(name = "role_id")

@@ -30,7 +30,6 @@ public class StudentService implements UserService<Student, StudentDTO>{
                 studentDTO.getName(),
                 studentDTO.getEmail(),
                 passwordEncoder.encode(studentDTO.getPassword()),
-                studentDTO.getBirthDate(),
                 studentDTO.getCourse(),
                 studentDTO.getFaculty(),
                 studentDTO.getGroupNumber()
@@ -44,7 +43,6 @@ public class StudentService implements UserService<Student, StudentDTO>{
                 studentDTO.getName(),
                 studentDTO.getEmail(),
                 passwordEncoder.encode(studentDTO.getPassword()),
-                studentDTO.getBirthDate(),
                 studentDTO.getCourse(),
                 studentDTO.getFaculty(),
                 studentDTO.getGroupNumber()
