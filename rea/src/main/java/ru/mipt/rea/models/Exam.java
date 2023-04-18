@@ -29,7 +29,7 @@ public class Exam {
     private List<Examiner> examinerList;
 
     @ManyToMany
-    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "studen_id"))
+    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
     private List<Student> studentList;
 
 }
