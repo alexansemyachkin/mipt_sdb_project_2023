@@ -3,6 +3,7 @@ package ru.mipt.rea.models.user;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import ru.mipt.rea.models.other.Exam;
 import ru.mipt.rea.models.other.Report;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@NoArgsConstructor
 public class Student extends AppUser {
 
     @Column(nullable = false)
@@ -52,6 +54,4 @@ public class Student extends AppUser {
         this.setFaculty(faculty);
         this.setGroupNumber(groupNumber);
     }
-
-    public Student() {}
 }

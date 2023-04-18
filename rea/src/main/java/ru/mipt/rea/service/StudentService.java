@@ -10,7 +10,7 @@ import ru.mipt.rea.repos.StudentRepo;
 
 @Service
 @AllArgsConstructor
-public class StudentService implements UserService {
+public class StudentService implements UserService<Student, StudentDTO>{
 
 
     private final BCryptPasswordEncoder passwordEncoder;

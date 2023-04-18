@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public abstract class UserDTO {
 
     private int id;
     private String name;
