@@ -1,7 +1,9 @@
-package ru.mipt.rea.models;
+package ru.mipt.rea.models.other;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import ru.mipt.rea.models.user.Examiner;
+import ru.mipt.rea.models.user.Student;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -29,7 +31,7 @@ public class Exam {
     private List<Examiner> examinerList;
 
     @ManyToMany
-    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "studen_id"))
+    @JoinTable(name = "student_exam", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
     private List<Student> studentList;
 
 }

@@ -1,25 +1,21 @@
 package service.classes;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.mipt.rea.dto.StudentDTO;
 import ru.mipt.rea.exception.UserAlreadyExistsException;
-import ru.mipt.rea.models.Student;
+import ru.mipt.rea.models.user.Student;
 import ru.mipt.rea.repos.StudentRepo;
 import service.interfaces.StudentService;
 
 @Service
+@AllArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
     private final StudentRepo studentRepo;
-
-    public StudentServiceImpl(StudentRepo studentRepo) {
-        this.studentRepo = studentRepo;
-    }
 
     public Student save(StudentDTO studentDTO) {
         Student student = new Student(

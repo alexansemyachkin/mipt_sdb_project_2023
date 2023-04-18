@@ -1,11 +1,15 @@
-package ru.mipt.rea.models;
+package ru.mipt.rea.models.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import ru.mipt.rea.models.other.Exam;
+import ru.mipt.rea.models.other.Report;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 public class Student extends AppUser {
