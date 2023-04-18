@@ -1,4 +1,4 @@
-package service.classes;
+package service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -7,11 +7,10 @@ import ru.mipt.rea.dto.StudentDTO;
 import ru.mipt.rea.exception.UserAlreadyExistsException;
 import ru.mipt.rea.models.user.Student;
 import ru.mipt.rea.repos.StudentRepo;
-import service.interfaces.StudentService;
 
 @Service
 @AllArgsConstructor
-public class StudentServiceImpl implements StudentService {
+public class StudentService implements UserService {
 
 
     private final BCryptPasswordEncoder passwordEncoder;
@@ -30,11 +29,9 @@ public class StudentServiceImpl implements StudentService {
         return studentRepo.save(student);
     }
 
-
-    @Override
     public Student update(StudentDTO studentDTO) {
         Student student = new Student(
-                studentDTO.getStudentId(),
+                studentDTO.getId(),
                 studentDTO.getName(),
                 studentDTO.getEmail(),
                 passwordEncoder.encode(studentDTO.getPassword()),
@@ -54,7 +51,6 @@ public class StudentServiceImpl implements StudentService {
         return save(studentDTO);
     }
 
-    @Override
     public Student findByEmail(String email) {
         return studentRepo.findByEmail(email);
     }

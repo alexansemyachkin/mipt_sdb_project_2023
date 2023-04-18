@@ -2,22 +2,18 @@ package ru.mipt.rea.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.sql.Timestamp;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-public class ExaminerDTO {
+public class ExaminerDTO extends UserDTO{
 
-    private int examinerId;
-    private String name;
-    private String email;
-    private String password;
-    private Timestamp birthDate;
     private String department;
 
     public ExaminerDTO(String email, String password) {
-        this.setEmail(email);
-        this.setPassword(password);
+        super(email, password);
     }
 }
