@@ -29,7 +29,8 @@ public class StudentService implements UserService<Student, StudentDTO>{
                 passwordEncoder.encode(studentDTO.getPassword()),
                 studentDTO.getCourse(),
                 studentDTO.getFaculty(),
-                studentDTO.getGroupNumber()
+                studentDTO.getGroupNumber(),
+                studentDTO.getRole()
         );
         return studentRepo.save(student);
     }
@@ -42,7 +43,8 @@ public class StudentService implements UserService<Student, StudentDTO>{
                 passwordEncoder.encode(studentDTO.getPassword()),
                 studentDTO.getCourse(),
                 studentDTO.getFaculty(),
-                studentDTO.getGroupNumber()
+                studentDTO.getGroupNumber(),
+                studentDTO.getRole()
         );
         return studentRepo.save(student);
     }

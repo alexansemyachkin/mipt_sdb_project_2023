@@ -1,5 +1,6 @@
 package ru.mipt.rea.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,8 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class ExaminerDTO extends UserDTO{
 
+
+    @NotBlank(message = "Department must not be blank")
     private String department;
 
     public ExaminerDTO(String email, String password) {

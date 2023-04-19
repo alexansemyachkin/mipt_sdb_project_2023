@@ -7,13 +7,14 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.mipt.rea.models.other.Role;
 
 import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class UserDTO {
+public class UserDTO {
 
     private int id;
 
@@ -27,7 +28,7 @@ public abstract class UserDTO {
     @Size(min = 8, max = 30, message = "Password must be between {min} and {max} characters")
     private String password;
 
-    private String role;
+    private Role role;
 
     public UserDTO(String email, String password) {
         this.setEmail(email);

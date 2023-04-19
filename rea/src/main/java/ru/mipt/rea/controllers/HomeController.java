@@ -16,4 +16,8 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/home/option")
+    public String option() {
+        return "option";
+    }
 }
