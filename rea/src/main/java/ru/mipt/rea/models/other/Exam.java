@@ -13,6 +13,7 @@ import java.util.List;
 public class Exam {
 
     @Id
+    @GeneratedValue
     @Column(nullable = false)
     private int id;
 

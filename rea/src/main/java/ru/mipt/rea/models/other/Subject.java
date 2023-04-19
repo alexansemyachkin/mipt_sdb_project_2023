@@ -1,9 +1,6 @@
 package ru.mipt.rea.models.other;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -13,6 +10,7 @@ import java.util.List;
 public class Subject {
 
     @Id
+    @GeneratedValue
     @Column(nullable = false)
     private int id;
 

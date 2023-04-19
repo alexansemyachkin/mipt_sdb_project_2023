@@ -8,6 +8,7 @@ import lombok.Data;
 public class Ticket {
 
     @Id
+    @GeneratedValue
     @Column(nullable = false)
     private int id;
 

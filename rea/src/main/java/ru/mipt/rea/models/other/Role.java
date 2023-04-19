@@ -11,6 +11,7 @@ import java.util.List;
 public class Role {
 
     @Id
+    @GeneratedValue
     @Column(nullable = false)
     private int id;
 

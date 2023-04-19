@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 public abstract class AppUser {
 
     @Id
+    @GeneratedValue
     @Column(nullable = false)
     private int id;
 

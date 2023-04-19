@@ -9,6 +9,7 @@ import ru.mipt.rea.models.user.Student;
 public class Report {
 
     @Id
+    @GeneratedValue
     @Column(nullable = false)
     private int id;
 
