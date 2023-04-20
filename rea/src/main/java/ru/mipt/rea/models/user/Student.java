@@ -30,6 +30,10 @@ public class Student extends User {
     private List<Exam> examList;
 
 
+    public Student(String name, String email, String password, Role role) {
+        super(name, email, password, role);
+    }
+
     public Student (int id, String name, String email, String password, int course, String faculty, int groupNumber, Role role) {
         this.setId(id);
         this.setName(name);

@@ -2,6 +2,7 @@ package ru.mipt.rea.service;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,11 +17,10 @@ import ru.mipt.rea.repos.UserRepo;
 import java.util.Collections;
 
 @Service
-@NoArgsConstructor(force = true)
-@AllArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    private final BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     private final UserRepo userRepo;
 
@@ -66,5 +66,10 @@ public class UserServiceImpl implements UserService{
     private SimpleGrantedAuthority mapRolesToAuthorities(Role role){
         return new SimpleGrantedAuthority(role.getName());
     }
+
+    public UserServiceImpl(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+
 
 }

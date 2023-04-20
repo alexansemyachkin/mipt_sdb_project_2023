@@ -10,15 +10,16 @@ import ru.mipt.rea.dto.StudentDTO;
 import ru.mipt.rea.exception.UserAlreadyExistsException;
 import ru.mipt.rea.models.other.Role;
 import ru.mipt.rea.models.user.Student;
+import ru.mipt.rea.repos.RoleRepo;
 import ru.mipt.rea.repos.StudentRepo;
+import ru.mipt.rea.repos.UserRepo;
 
 import java.util.Collections;
 
 @Service
-@AllArgsConstructor
 public class StudentServiceImpl extends UserServiceImpl{
 
-    private final BCryptPasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
     private final StudentRepo studentRepo;
 
@@ -59,6 +60,10 @@ public class StudentServiceImpl extends UserServiceImpl{
 
     public Student findByEmail(String email) {
         return studentRepo.findByEmail(email);
+    }
+
+    public StudentServiceImpl(StudentRepo studentRepo) {
+        this.studentRepo = studentRepo;
     }
 
 
