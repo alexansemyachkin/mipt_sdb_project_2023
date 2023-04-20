@@ -2,7 +2,7 @@ package ru.mipt.rea.models.other;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import ru.mipt.rea.models.user.AppUser;
+import ru.mipt.rea.models.user.User;
 
 import java.util.List;
 
@@ -19,5 +19,5 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role")
-    private List<AppUser> AppUserList;
+    private List<User> AppUserList;
 }

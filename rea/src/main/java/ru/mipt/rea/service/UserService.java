@@ -4,16 +4,21 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.models.other.Role;
+import ru.mipt.rea.models.user.User;
 
-public interface UserService<T, V> extends UserDetailsService {
+public interface UserService extends UserDetailsService {
 
-    T save(V dto);
-    T update(V dto);
-    T register(V dto);
+    User register(UserDTO dto);
+
+    User save(UserDTO dto);
+
+    User update(UserDTO dto);
+
+    User findByEmail(String email);
 
     UserDetails loadUserByUsername(String username);
 
-    T findByEmail(String email);
 
 }

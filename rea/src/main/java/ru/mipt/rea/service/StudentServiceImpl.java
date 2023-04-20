@@ -16,11 +16,19 @@ import java.util.Collections;
 
 @Service
 @AllArgsConstructor
-public class StudentService implements UserService<Student, StudentDTO>{
+public class StudentServiceImpl extends UserServiceImpl{
 
     private final BCryptPasswordEncoder passwordEncoder;
 
     private final StudentRepo studentRepo;
+
+    public Student register(StudentDTO studentDTO) {
+        Student student = findByEmail(studentDTO.getEmail());
+        if (student != null) {
+            throw new UserAlreadyExistsException("User with this email already exists");
+        }
+        return save(studentDTO);
+    }
 
     public Student save(StudentDTO studentDTO) {
         Student student = new Student(
@@ -49,28 +57,9 @@ public class StudentService implements UserService<Student, StudentDTO>{
         return studentRepo.save(student);
     }
 
-    public Student register(StudentDTO studentDTO) {
-        Student student = findByEmail(studentDTO.getEmail());
-        if (student != null) {
-            throw new UserAlreadyExistsException("User with this email already exists");
-        }
-        return save(studentDTO);
-    }
-
     public Student findByEmail(String email) {
         return studentRepo.findByEmail(email);
     }
 
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Student student = studentRepo.findByEmail(username);
-        if (student == null) {
-            throw new UsernameNotFoundException("Invalid username or password");
-        }
-        return new org.springframework.security.core.userdetails.User(student.getEmail(), student.getPassword(),
-                Collections.singleton(mapRolesToAuthorities(student.getRole())));
-    }
 
-    private SimpleGrantedAuthority mapRolesToAuthorities(Role role){
-        return new SimpleGrantedAuthority(role.getName());
-    }
 }

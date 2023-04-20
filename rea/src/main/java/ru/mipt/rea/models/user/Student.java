@@ -14,15 +14,12 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-public class Student extends AppUser {
+public class Student extends User {
 
-    @Column(nullable = false)
     private int course;
 
-    @Column(nullable = false)
     private String faculty;
 
-    @Column(nullable = false)
     private int groupNumber;
 
     @OneToMany(mappedBy = "student")

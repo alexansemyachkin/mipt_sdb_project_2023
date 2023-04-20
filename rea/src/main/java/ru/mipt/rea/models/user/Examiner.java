@@ -12,9 +12,8 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-public class Examiner extends AppUser {
+public class Examiner extends User {
 
-    @Column (nullable = false)
     private String department;
 
     @ManyToMany

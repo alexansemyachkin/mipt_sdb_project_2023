@@ -1,15 +1,19 @@
 package ru.mipt.rea.models.user;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import ru.mipt.rea.models.other.Role;
 
-import java.sql.Timestamp;
-
 @Entity
+@Table(name="\"user\"")
 @Inheritance(strategy = InheritanceType.JOINED)
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-public abstract class AppUser {
+public class User {
 
     @Id
     @GeneratedValue
@@ -29,4 +33,10 @@ public abstract class AppUser {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public User(String name, String email, String password, Role role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 }
