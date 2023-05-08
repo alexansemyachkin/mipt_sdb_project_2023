@@ -1,8 +1,7 @@
-package ru.mipt.rea.models.other;
+package ru.mipt.rea.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
-import ru.mipt.rea.models.user.User;
 
 import java.sql.Timestamp;
 import java.util.List;

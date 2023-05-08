@@ -8,8 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.exception.UserAlreadyExistsException;
-import ru.mipt.rea.models.other.Role;
-import ru.mipt.rea.models.user.User;
+import ru.mipt.rea.models.Role;
+import ru.mipt.rea.models.User;
 import ru.mipt.rea.repos.UserRepo;
 
 import java.util.Collections;

@@ -1,11 +1,9 @@
-package ru.mipt.rea.models.user;
+package ru.mipt.rea.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import ru.mipt.rea.models.other.Role;
 
 @Entity
 @Table(name="\"user\"")

@@ -1,6 +1,6 @@
-package ru.mipt.rea.models.other;
+package ru.mipt.rea.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 @Entity

@@ -4,25 +4,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.mipt.rea.repos.UserRepo;
 import ru.mipt.rea.service.UserService;
-import ru.mipt.rea.service.UserServiceImpl;
 
+
+/**
+ * WebSecurityConfig Configuration class extending WebSecurityConfigurerAdapter and sets up Spring security
+ */
 @Configuration
-public class WebSecurityConfig {
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /**
+     * Field userRepo
+     */
     @Autowired
-    UserService userService;
+    private UserRepo userRepo;
 
+
+    /**
+     * Field userService
+     */
+    @Autowired
+    private UserService userService;
+
+    /**
+     * @return Bean password encoder
+     */
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * @return authentication provider
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -32,13 +55,18 @@ public class WebSecurityConfig {
     }
 
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+    }
+
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .requestMatchers("/", "/registration", "/welcome")
+        http.authorizeRequests()
+                .antMatchers("/", "/registration", "/welcome")
                 .permitAll()
-                .requestMatchers("/home/examiner/**").hasRole("examiner")
-                .requestMatchers("/home/student/**").hasRole("student")
-                .requestMatchers("/home/admin/**").hasRole("admin")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -50,7 +78,7 @@ public class WebSecurityConfig {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/start")
                 .permitAll();
     }
 }

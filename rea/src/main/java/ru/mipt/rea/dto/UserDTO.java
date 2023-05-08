@@ -1,15 +1,10 @@
 package ru.mipt.rea.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.mipt.rea.models.other.Role;
-
-import java.sql.Timestamp;
+import ru.mipt.rea.models.Role;
 
 @Data
 @AllArgsConstructor

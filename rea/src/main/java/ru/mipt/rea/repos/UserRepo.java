@@ -1,7 +1,7 @@
 package ru.mipt.rea.repos;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.mipt.rea.models.user.User;
+import ru.mipt.rea.models.User;
 
 public interface UserRepo extends CrudRepository<User, Integer> {
 

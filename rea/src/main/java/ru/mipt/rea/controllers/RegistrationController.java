@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.exception.UserAlreadyExistsException;
-import ru.mipt.rea.models.user.User;
+import ru.mipt.rea.models.User;
 import ru.mipt.rea.service.UserServiceImpl;
 
 @Controller
