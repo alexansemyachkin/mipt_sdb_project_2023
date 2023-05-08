@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.service.UserServiceImpl;
 
 @Controller
@@ -24,8 +23,8 @@ public class StudentHomeController {
     }
 
     @GetMapping
-    public String StudentHomePage(@ModelAttribute("user") Integer userId) {
-        return "redirect:/home/student" + userId;
+    public String StudentHomePage(@ModelAttribute("userId") Integer userId) {
+        return "redirect:/home/student/" + userId;
     }
 
     @GetMapping("/{id}")
