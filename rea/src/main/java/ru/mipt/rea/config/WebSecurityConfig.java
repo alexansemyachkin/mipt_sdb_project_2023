@@ -10,14 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.mipt.rea.repos.UserRepo;
 import ru.mipt.rea.service.UserService;
+import ru.mipt.rea.service.UserServiceImpl;
 
 @Configuration
-@EnableWebSecurity
 public class WebSecurityConfig {
-
-
-    @Autowired
-    UserRepo userRepo;
 
     @Autowired
     UserService userService;
