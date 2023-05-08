@@ -45,14 +45,9 @@ public class RegistrationController {
 
         try {
             User user = userService.register(userDTO);
-
-            UsernamePasswordAuthenticationToken authenticationToken =
-                    new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
-            Authentication authentication = authenticationProvider.authenticate(authenticationToken);
             redirectAttributes.addAttribute("id", userDTO.getId());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
             redirectAttributes.addFlashAttribute("message", "Registration successful");
-            return "redirect:/home/user/{id}";
+            return "redirect:/home/student/{id}";
 
         } catch (UserAlreadyExistsException exception) {
             bindingResult.rejectValue("username", "error.user", "User with this username already exists");
