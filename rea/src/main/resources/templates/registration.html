@@ -11,22 +11,13 @@
 </head>
 <body>
 <div>
-    <form class="form-signin" th:action="@{/home/student/registration}" method="post" th:object="${student}">
+    <form class="form-signin" th:action="@{/home/registration}" method="post" th:object="${user}">
         <h2 class="form-signin-heading">Please sign up</h2>
         <p>
             <input type="text" id="email" name="email" class="form-control" placeholder="Email" required="" autofocus="">
         </p>
         <p>
             <input type="text" id="name" name="name" class="form-control" placeholder="Name" required="" autofocus="">
-        </p>
-        <p>
-            <input type="number" id="group_number" name="groupNumber" class="form-control" placeholder="Number of group" required="">
-        </p>
-        <p>
-            <input type="number" id="course" name="course" class="form-control" placeholder="Course" required="">
-        </p>
-        <p>
-            <input type="text" id="Faculty" name="faculty" class="form-control" placeholder="Faculty" required="">
         </p>
         <p>
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
