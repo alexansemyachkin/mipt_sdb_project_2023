@@ -10,6 +10,7 @@ import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.exception.UserAlreadyExistsException;
 import ru.mipt.rea.models.Role;
 import ru.mipt.rea.models.User;
+import ru.mipt.rea.repos.RoleRepo;
 import ru.mipt.rea.repos.UserRepo;
 
 import java.util.Collections;
@@ -21,8 +22,10 @@ public class UserServiceImpl implements UserService{
     private BCryptPasswordEncoder passwordEncoder;
 
     private final UserRepo userRepo;
+    private final RoleRepo roleRepo;
 
     public User register(UserDTO userDTO) {
+        userDTO.setRole(roleRepo.findRoleByName("ROLE_STUDENT"));
         User user = findByEmail(userDTO.getEmail());
         if (user != null) {
             throw new UserAlreadyExistsException("User with this email already exists");
@@ -65,8 +68,9 @@ public class UserServiceImpl implements UserService{
         return new SimpleGrantedAuthority(role.getName());
     }
 
-    public UserServiceImpl(UserRepo userRepo) {
+    public UserServiceImpl(UserRepo userRepo, RoleRepo roleRepo) {
         this.userRepo = userRepo;
+        this.roleRepo = roleRepo;
     }
 
 
