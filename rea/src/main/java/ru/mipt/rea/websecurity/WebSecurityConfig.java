@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserService userService;
 
     @Autowired
-    private AuthenticationSuccessHandler successHandler;
+    private CustomSuccessHandler successHandler;
 
 
     @Bean
