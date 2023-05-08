@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import ru.mipt.rea.repos.UserRepo;
 import ru.mipt.rea.service.UserService;
 
 
@@ -22,30 +21,17 @@ import ru.mipt.rea.service.UserService;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /**
-     * Field userRepo
-     */
-    @Autowired
-    private UserRepo userRepo;
 
-
-    /**
-     * Field userService
-     */
     @Autowired
     private UserService userService;
 
-    /**
-     * @return Bean password encoder
-     */
+
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /**
-     * @return authentication provider
-     */
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -66,7 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/registration", "/welcome")
                 .permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/home/admin/**").hasRole("ADMIN")
+                .antMatchers("/home/examiner/**").hasRole("EXAMINER")
+                .antMatchers("/home/student/**").hasRole("STUDENT")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -78,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/start")
+                .logoutSuccessUrl("/welcome")
                 .permitAll();
     }
 }
