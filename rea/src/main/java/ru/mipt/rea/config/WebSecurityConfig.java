@@ -14,9 +14,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.mipt.rea.service.UserService;
 
 
-/**
- * WebSecurityConfig Configuration class extending WebSecurityConfigurerAdapter and sets up Spring security
- */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
