@@ -8,12 +8,16 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import ru.mipt.rea.repos.UserRepo;
 import ru.mipt.rea.service.UserService;
 
 @Configuration
 public class WebSecurityConfig {
 
-    @Qualifier("userServiceImpl")
+
+    @Autowired
+    UserRepo userRepo;
+
     @Autowired
     UserService userService;
 
@@ -30,13 +34,6 @@ public class WebSecurityConfig {
         return auth;
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManager() {
-//        DaoAuthenticationProvider studentAuth = authenticationProvider(studentService);
-//        DaoAuthenticationProvider examinerAuth = authenticationProvider(examinerService);
-//        return new ProviderManager(List.of(studentAuth, examinerAuth));
-//    }
-
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
@@ -44,6 +41,7 @@ public class WebSecurityConfig {
                 .permitAll()
                 .requestMatchers("/home/examiner/**").hasRole("examiner")
                 .requestMatchers("/home/student/**").hasRole("student")
+                .requestMatchers("/home/admin/**").hasRole("admin")
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -2,7 +2,7 @@ package ru.mipt.rea.models.other;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import ru.mipt.rea.models.user.Student;
+import ru.mipt.rea.models.user.User;
 
 @Entity
 @Data
@@ -17,8 +17,8 @@ public class Report {
     private int mark;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "exam_id")
