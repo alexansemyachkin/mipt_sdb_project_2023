@@ -13,6 +13,6 @@ public class HomeController {
 
     @GetMapping("/welcome")
     public String welcome() {
-        return "home";
+        return "welcome";
     }
 }
