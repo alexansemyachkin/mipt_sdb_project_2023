@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.mipt.rea.dto.UserDTO;
@@ -18,7 +19,7 @@ import ru.mipt.rea.models.user.User;
 import ru.mipt.rea.service.UserServiceImpl;
 
 @Controller
-@RequestMapping("registration")
+@RequestMapping("/registration")
 public class RegistrationController {
 
     @Autowired
@@ -27,7 +28,12 @@ public class RegistrationController {
     @Autowired
     private AuthenticationProvider authenticationProvider;
 
-    @GetMapping
+
+    @GetMapping String registrationForm() {
+        return "registration";
+    }
+
+    @PostMapping
     public String registration(@ModelAttribute("user") UserDTO userDTO,
                                RedirectAttributes redirectAttributes,
                                BindingResult bindingResult,
