@@ -1,16 +1,15 @@
 package ru.mipt.rea.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.service.UserServiceImpl;
 
 @Controller
-@RequestMapping("home/student/**")
-@SessionAttributes("user")
+@RequestMapping("/home/student")
+@SessionAttributes("userId")
 public class StudentHomeController {
 
 
@@ -18,8 +17,19 @@ public class StudentHomeController {
     private UserServiceImpl userService;
 
 
+    @ModelAttribute("userId")
+    public Integer userId() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userService.findByEmail(email).getId();
+    }
+
     @GetMapping
-    public String StudentHomePage() {
+    public String StudentHomePage(@ModelAttribute("user") Integer userId) {
+        return "redirect:/home/student" + userId;
+    }
+
+    @GetMapping("/{id}")
+    public String ExactStudentHomePage(@PathVariable String id) {
         return "student_home";
     }
 }
