@@ -16,8 +16,10 @@ public class UserDTO {
     @NotBlank(message = "Name must not be blank")
     private String name;
 
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     @NotBlank(message = "Email must not be blank")
     private String email;
+
 
     private String password;
 

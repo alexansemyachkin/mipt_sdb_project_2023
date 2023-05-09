@@ -24,6 +24,7 @@ import ru.mipt.rea.service.UserServiceImpl;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 
 @Controller
@@ -47,7 +48,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String registration(@ModelAttribute("user") UserDTO userDTO,
+    public String registration(@Valid @ModelAttribute("user") UserDTO userDTO,
                                RedirectAttributes redirectAttributes,
                                BindingResult bindingResult,
                                HttpServletRequest request,
