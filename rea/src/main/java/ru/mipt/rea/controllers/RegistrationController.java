@@ -48,7 +48,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String registration(@Valid @ModelAttribute("user") UserDTO userDTO,
+    public String registration(@ModelAttribute("user") @Valid UserDTO userDTO,
                                RedirectAttributes redirectAttributes,
                                BindingResult bindingResult,
                                HttpServletRequest request,
