@@ -14,6 +14,7 @@ import ru.mipt.rea.repos.RoleRepo;
 import ru.mipt.rea.repos.UserRepo;
 
 import java.util.Collections;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -72,6 +73,5 @@ public class UserServiceImpl implements UserService{
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
     }
-
 
 }

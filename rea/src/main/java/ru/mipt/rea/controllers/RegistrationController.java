@@ -1,13 +1,11 @@
 package ru.mipt.rea.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +19,6 @@ import ru.mipt.rea.exception.UserAlreadyExistsException;
 import ru.mipt.rea.models.User;
 import ru.mipt.rea.service.UserServiceImpl;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -49,14 +45,16 @@ public class RegistrationController {
 
     @PostMapping
     public String registration(@ModelAttribute("user") @Valid UserDTO userDTO,
-                               RedirectAttributes redirectAttributes,
                                BindingResult bindingResult,
-                               HttpServletRequest request,
-                               Model model) {
+                               Model model,
+                               RedirectAttributes redirectAttributes,
+                               HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "registration";
         }
+
+        System.out.println("я здесь");
 
         try {
             User user = userService.register(userDTO);
@@ -73,6 +71,5 @@ public class RegistrationController {
             return "registration";
         }
     }
-
 
 }
