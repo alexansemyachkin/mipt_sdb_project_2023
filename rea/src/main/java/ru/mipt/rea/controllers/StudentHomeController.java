@@ -28,7 +28,7 @@ public class StudentHomeController {
     }
 
     @GetMapping("/{id}")
-    public String ExactStudentHomePage(@PathVariable String id) {
+    public String ExactStudentHomePage() {
         return "student_home";
     }
 }
