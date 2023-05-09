@@ -17,14 +17,14 @@ public class StudentHomeController {
 
 
     @ModelAttribute("userId")
-    public Integer userId() {
+    public int userId() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return userService.findByEmail(email).getId();
     }
 
     @GetMapping
-    public String StudentHomePage(@ModelAttribute("userId") Integer userId) {
-        return "redirect:/home/student/" + userId;
+    public String StudentHomePage() {
+        return "redirect:/home/student/" + userId();
     }
 
     @GetMapping("/{id}")
