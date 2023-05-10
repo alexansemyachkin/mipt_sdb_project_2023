@@ -63,28 +63,28 @@
                     <strong>Сдать экзамен</strong>
                 </button>
             </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="btn-group" role="group" aria-label="Basic example" th:each="subject : ${subjectList}">
-                        <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" th:data-bs-target=" '#exampleModal' + ${subject.id}" th:text="${subject.name}"></button>
-                        <div class="modal fade" th:id=" 'exampleModal' +${subject.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Подтверждение экзамена</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body" th:text="'Вы выбрали предмет : ' + ${subject.name} + '. Для подтверждения нажмите кнопку ниже'"></div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <a type="button" class="btn btn-primary" th:href=" '/home/subjects/subject' + ${subject.id} + '/exam'">Сдать экзамен</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">-->
+<!--                <div class="accordion-body">-->
+<!--                    <div class="btn-group" role="group" aria-label="Basic example" th:each="subject : ${subjectList}">-->
+<!--                        <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" th:data-bs-target=" '#exampleModal' + ${subject.id}" th:text="${subject.name}"></button>-->
+<!--                        <div class="modal fade" th:id=" 'exampleModal' +${subject.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                            <div class="modal-dialog">-->
+<!--                                <div class="modal-content">-->
+<!--                                    <div class="modal-header">-->
+<!--                                        <h5 class="modal-title" id="exampleModalLabel">Подтверждение экзамена</h5>-->
+<!--                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal-body" th:text="'Вы выбрали предмет : ' + ${subject.name} + '. Для подтверждения нажмите кнопку ниже'"></div>-->
+<!--                                    <div class="modal-footer">-->
+<!--                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                                        <a type="button" class="btn btn-primary" th:href=" '/home/subjects/subject' + ${subject.id} + '/exam'">Сдать экзамен</a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import ru.mipt.rea.models.User;
 import ru.mipt.rea.service.UserServiceImpl;
 
 @Controller
@@ -29,8 +30,8 @@ public class StudentHomeController {
 
     @GetMapping
     public String StudentHomePage(@ModelAttribute("userId") int userId,  Model model) {
-        String name = userService.findById(userId).getName();
-        model.addAttribute("name", name);
+        User user = userService.findById(userId);
+        model.addAttribute("user", user);
         return "home";
     }
 
