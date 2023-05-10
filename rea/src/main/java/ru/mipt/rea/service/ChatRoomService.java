@@ -13,13 +13,8 @@ public class ChatRoomService {
     @Autowired
     private ChatRoomRepository chatRoomRepository;
 
-    public Optional<String> getChatId(int senderId, int recipientId) {
-        Optional<ChatRoom> optionalChatRoom = chatRoomRepository.findBySenderIdAndRecipientId(senderId, recipientId);
-        if (optionalChatRoom.isPresent()) {
-            ChatRoom chatRoom = optionalChatRoom.get();
-            return Optional.ofNullable(chatRoom.getChatId());
-        } else {
-            return Optional.empty();
-        }
+    public String getChatId(int senderId, int recipientId) {
+        ChatRoom ChatRoom = chatRoomRepository.findBySenderIdAndRecipientId(senderId, recipientId);
+        return ChatRoom.getChatId();
     }
 }

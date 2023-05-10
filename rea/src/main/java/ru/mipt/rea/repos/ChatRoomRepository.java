@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface ChatRoomRepository extends CrudRepository<ChatRoom, Integer> {
 
-    Optional<ChatRoom> findBySenderIdAndRecipientId(int senderId, int recipientId);
+    ChatRoom findBySenderIdAndRecipientId(int senderId, int recipientId);
 }

@@ -31,6 +31,4 @@ public class ChatMessage {
 
     private Date timestamp;
 
-    private MessageStatus status;
-
 }
