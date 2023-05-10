@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import ru.mipt.rea.service.UserServiceImpl;
 
 @Controller
-@RequestMapping("/home/student")
+@RequestMapping("/home")
 @SessionAttributes("userId")
 public class StudentHomeController {
 
@@ -31,7 +31,7 @@ public class StudentHomeController {
     public String StudentHomePage(@ModelAttribute("userId") int userId,  Model model) {
         String name = userService.findById(userId).getName();
         model.addAttribute("name", name);
-        return "student_home";
+        return "home";
     }
 
 }

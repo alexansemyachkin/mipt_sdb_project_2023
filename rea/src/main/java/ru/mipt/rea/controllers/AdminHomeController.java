@@ -15,6 +15,6 @@ public class AdminHomeController {
 
     @GetMapping
     public String AdminHomePage() {
-        return "admin_home";
+        return "admin";
     }
 }

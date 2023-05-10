@@ -57,7 +57,7 @@ public class RegistrationController {
             token.setDetails(new WebAuthenticationDetails(request));
             Authentication authentication = authenticationProvider.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return "redirect:/home/student";
+            return "redirect:/home";
         } catch (UserAlreadyExistsException exception) {
             bindingResult.rejectValue("email", "error.user", "User with this username already exists");
             return "registration";
