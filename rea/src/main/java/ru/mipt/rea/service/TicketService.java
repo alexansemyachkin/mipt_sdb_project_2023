@@ -17,8 +17,7 @@ public class TicketService {
 
 
         public Ticket save(TicketDTO TicketDTO){
-            Ticket Ticket = new Ticket(TicketDTO.getQuestion(),
-                                       TicketDTO.getSubject());
+            Ticket Ticket = new Ticket(TicketDTO.getQuestion(), TicketDTO.getSubject());
             return ticketRepo.save(Ticket);
         }
 

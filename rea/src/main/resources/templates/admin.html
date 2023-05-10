@@ -16,7 +16,7 @@
                     <div class="container col-md-5 border border-primary rounded-3">
                         <h6 class="text-center">Добавить новый предмет</h6>
                         <hr class="bg-primary">
-                        <form th:action="@{home/addSubject}" method="post" th:object="${subject}">
+                        <form th:action="@{admin/add_subject}" method="post" th:object="${subject}">
                             <div class="mb-3">
                                 <label for="subject_name" class="form-label">Название предмета</label>
                                 <input th:field="*{name}" class="form-control" id="subject_name">
@@ -43,48 +43,14 @@
                         <form class="row g-3" th:action="@{home/addQuestion}" method="post">
                             <div class="col-md-12">
                                 <label for="validationDefault01" class="form-label">Формулировка вопроса</label>
-                                <input type="text" class="form-control" id="validationDefault01" th:object="${question}" th:field="*{questionToAnswer}" required>
+                                <input type="text" class="form-control" id="validationDefault01" th:object="${ticket}" th:field="*{question}" required>
                             </div>
-                            <div class="col-md-12">
-                                <label for="validationDefault02" class="form-label">Первый вариант ответа</label>
-                                <input type="text" class="form-control" id="validationDefault02" th:object="${question}" th:field="*{possibleAnswers.possibleAnswer1}" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="validationDefault03" class="form-label">Второй вариант ответа</label>
-                                <input type="text" class="form-control" id="validationDefault03" th:object="${question}" th:field="*{possibleAnswers.possibleAnswer2}" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="validationDefault04" class="form-label">Третий вариант ответа</label>
-                                <input type="text" class="form-control" id="validationDefault04" th:object="${question}" th:field="*{possibleAnswers.possibleAnswer3}" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="validationDefault05" class="form-label">Четвертый вариант ответа</label>
-                                <input type="text" class="form-control" id="validationDefault05" th:object="${question}"  th:field="*{possibleAnswers.possibleAnswer4}" required>
-                            </div>
+
                             <div class="col-md-6">
                                 <label for="validationDefault06" class="form-label">Предмет</label>
                                 <select class="form-select" id="validationDefault06" th:object="${subject}" th:field="*{name}" required>
-                                    <option th:each="iterator : ${subjectList}" th:value="${iterator.name}" th:text="${iterator.name}"></option>
+                                    <option th:each="iterator : ${subject_list}" th:value="${iterator.name}" th:text="${iterator.name}"></option>
                                 </select>
-                            </div>
-                            <div class="col-md-12">
-                                <h6>Правильный ответ</h6>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" th:value="1" th:object="${question}" th:field="*{rightAnswerIndex}">
-                                    <label class="form-check-label" for="inlineRadio1">1</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" th:value="2" th:object="${question}" th:field="*{rightAnswerIndex}">
-                                    <label class="form-check-label" for="inlineRadio2">2</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" th:value="3" th:object="${question}" th:field="*{rightAnswerIndex}">
-                                    <label class="form-check-label" for="inlineRadio3">3</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" th:value="4" th:object="${question}" th:field="*{rightAnswerIndex}">
-                                    <label class="form-check-label" for="inlineRadio4">4</label>
-                                </div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit" style="margin-bottom: 2%;">Добавить</button>

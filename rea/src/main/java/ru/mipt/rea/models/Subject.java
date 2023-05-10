@@ -1,12 +1,14 @@
 package ru.mipt.rea.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Subject {
 
     @Id
@@ -17,13 +19,14 @@ public class Subject {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String department;
-
     @OneToMany(mappedBy = "subject")
     private List<Exam> examList;
 
     @OneToMany(mappedBy = "subject")
     private List<Ticket> ticketList;
+
+    public Subject(String name) {
+        this.name = name;
+    }
 
 }

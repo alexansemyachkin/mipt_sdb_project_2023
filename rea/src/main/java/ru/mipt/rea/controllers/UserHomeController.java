@@ -8,17 +8,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import ru.mipt.rea.models.Subject;
 import ru.mipt.rea.models.User;
+import ru.mipt.rea.service.SubjectService;
 import ru.mipt.rea.service.UserServiceImpl;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/home")
 @SessionAttributes("userId")
-public class StudentHomeController {
+public class UserHomeController {
 
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private SubjectService subjectService;
 
 
     @ModelAttribute
@@ -26,6 +33,12 @@ public class StudentHomeController {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.findByEmail(email).getId();
         model.addAttribute("userId", userId);
+    }
+
+    @ModelAttribute
+    public void subjects(Model model) {
+        List<Subject> subjects = subjectService.findAll();
+        model.addAttribute("subjects", subjects);
     }
 
     @GetMapping
