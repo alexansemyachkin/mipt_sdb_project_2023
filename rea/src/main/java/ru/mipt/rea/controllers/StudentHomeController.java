@@ -20,10 +20,11 @@ public class StudentHomeController {
     private UserServiceImpl userService;
 
 
-    @ModelAttribute("userId")
-    public int userId() {
+    @ModelAttribute
+    public void userId(Model model) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userService.findByEmail(email).getId();
+        int userId = userService.findByEmail(email).getId();
+        model.addAttribute("userId", userId);
     }
 
     @GetMapping
