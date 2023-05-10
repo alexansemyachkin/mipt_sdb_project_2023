@@ -20,4 +20,9 @@ public class Ticket {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
+    public Ticket(String question, Subject subject) {
+        this.question = question;
+        this.subject = subject;
+    }
+
 }
