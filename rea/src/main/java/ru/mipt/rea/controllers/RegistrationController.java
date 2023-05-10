@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.exception.UserAlreadyExistsException;
-import ru.mipt.rea.models.User;
 import ru.mipt.rea.service.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,7 +59,7 @@ public class RegistrationController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return "redirect:/home/student";
         } catch (UserAlreadyExistsException exception) {
-            bindingResult.rejectValue("username", "error.user", "User with this username already exists");
+            bindingResult.rejectValue("email", "error.user", "User with this username already exists");
             return "registration";
         }
     }
