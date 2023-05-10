@@ -4,15 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.mipt.rea.models.Role;
 
-@Data
+import javax.persistence.*;
+
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Data
 public class ChatRoom {
 
+    @Id
+    @GeneratedValue
+    @Column(nullable = false)
     private String id;
+
+    @Column(nullable = false)
     private String chatId;
-    private String senderId;
-    private String recipientId;
+
+    @Column(nullable = false)
+    private int senderId;
+
+    @Column(nullable = false)
+    private int recipientId;
+
 }
