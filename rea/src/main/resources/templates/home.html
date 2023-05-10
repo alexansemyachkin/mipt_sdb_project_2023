@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/html">
+<head th:insert="parts/head :: head"></head>
 <body>
-<p>Привет <span th:text="${name}"></span>! </p>
+<header th:insert="parts/another_header :: another_header"></header>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 pt-5">
+            <hr class="bg-black">
+            <div class="row z-depth-3 shadow p-3 mb-5 bg-body rounded">
+                <div class="col-sm-4 bg-white rounded-left">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAyMjYgMjI2Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwyMjZ2LTIyNmgyMjZ2MjI2eiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxwYXRoIGQ9Ik0xMTMsMTY5LjVjLTMxLjIwNDA5LDAgLTU2LjUsLTI1LjI5NTkxIC01Ni41LC01Ni41djBjMCwtMzEuMjA0MDkgMjUuMjk1OTEsLTU2LjUgNTYuNSwtNTYuNXYwYzMxLjIwNDA5LDAgNTYuNSwyNS4yOTU5MSA1Ni41LDU2LjV2MGMwLDMxLjIwNDA5IC0yNS4yOTU5MSw1Ni41IC01Ni41LDU2LjV6IiBmaWxsPSIjY2NjY2NjIj48L3BhdGg+PGc+PHBhdGggZD0iTTExMywxNzQuNjY5NzVjLTM0LjAwNTAzLDAgLTYxLjY2OTc1LC0yNy42NjQ3MiAtNjEuNjY5NzUsLTYxLjY2OTc1YzAsLTM0LjAwNTAzIDI3LjY2NDcyLC02MS42Njk3NSA2MS42Njk3NSwtNjEuNjY5NzVjMzQuMDA1MDMsMCA2MS42Njk3NSwyNy42NjQ3MiA2MS42Njk3NSw2MS42Njk3NWMwLDM0LjAwNTAzIC0yNy42NjQ3Miw2MS42Njk3NSAtNjEuNjY5NzUsNjEuNjY5NzV6IiBmaWxsPSIjZGZmMGZlIj48L3BhdGg+PHBhdGggZD0iTTExMyw1Mi45OTdjMzMuMDg0OTksMCA2MC4wMDMsMjYuOTE4MDEgNjAuMDAzLDYwLjAwM2MwLDMzLjA4NDk5IC0yNi45MTgwMSw2MC4wMDMgLTYwLjAwMyw2MC4wMDNjLTMzLjA4NDk5LDAgLTYwLjAwMywtMjYuOTE4MDEgLTYwLjAwMywtNjAuMDAzYzAsLTMzLjA4NDk5IDI2LjkxODAxLC02MC4wMDMgNjAuMDAzLC02MC4wMDNNMTEzLDQ5LjY2MzVjLTM0Ljk3ODQyLDAgLTYzLjMzNjUsMjguMzU4MDggLTYzLjMzNjUsNjMuMzM2NWMwLDM0Ljk3ODQyIDI4LjM1ODA4LDYzLjMzNjUgNjMuMzM2NSw2My4zMzY1YzM0Ljk3ODQyLDAgNjMuMzM2NSwtMjguMzU4MDggNjMuMzM2NSwtNjMuMzM2NWMwLC0zNC45Nzg0MiAtMjguMzU4MDgsLTYzLjMzNjUgLTYzLjMzNjUsLTYzLjMzNjV6IiBmaWxsPSIjNDc4OGM3Ij48L3BhdGg+PHBhdGggZD0iTTEyNS44NDM5OCwxMjguMDAwNzVoLTI1LjY4Nzk1Yy0xLjQ5Njc0LDAuMzU2NjggLTI4LjgyNDc3LDcuMTYzNjkgLTI4LjgyNDc3LDI1LjcwNzk1djQuNjYwMjNjMTAuOTgwNTUsMTAuMDkwNSAyNS41ODEyOCwxNi4zMDA4MiA0MS42Njg3NSwxNi4zMDA4MmMxNi4wODc0NywwIDMwLjY4ODIsLTYuMjEwMzEgNDEuNjY4NzUsLTE2LjMwMDgydi00LjY2MDIzYzAsLTE4LjUzNDI2IC0yNy4zMjgwMywtMjUuMzUxMjcgLTI4LjgyNDc3LC0yNS43MDc5NXoiIGZpbGw9IiM5OGNjZmQiPjwvcGF0aD48cGF0aCBkPSJNMTEzLDE3Ni4zMzY1Yy0xNS44NDc0NiwwIC0zMS4wNDgyMiwtNS45NDM2MyAtNDIuNzk1NDcsLTE2LjczNzVsLTAuNTQwMDMsLTAuNDk2Njl2LTUuMzkzNmMwLC0xOS45MDA5OSAyOC44NzQ3OCwtMjcuMDM0NjggMzAuMTA0ODQsLTI3LjMyODAzbDAuMzg2NjksLTAuMDQ2NjdsMjYuMDc0NjQsMC4wNDY2N2MxLjIzMDA2LDAuMjkzMzUgMzAuMTA0ODQsNy40MjcwNCAzMC4xMDQ4NCwyNy4zMjgwM3Y1LjM5MzZsLTAuNTQwMDMsMC40OTMzNmMtMTEuNzQ3MjUsMTAuNzk3MjEgLTI2Ljk0ODAxLDE2Ljc0MDg0IC00Mi43OTU0NywxNi43NDA4NHpNNzIuOTk4LDE1Ny42MzIyM2MxMS4wNTM4OSw5LjkxNzE2IDI1LjIzMTI2LDE1LjM3MDc3IDQwLjAwMiwxNS4zNzA3N2MxNC43NzA3NCwwIDI4Ljk0ODExLC01LjQ1MzYxIDQwLjAwMiwtMTUuMzcwNzd2LTMuOTIzNTNjMCwtMTYuNzQwODQgLTI0Ljc0MTI0LC0yMy4zODc4NCAtMjcuMzYxMzcsLTI0LjA0MTJoLTI1LjI4NDZjLTIuNjE2OCwwLjY1MzM3IC0yNy4zNTgwMyw3LjI5NzAzIC0yNy4zNTgwMywyNC4wNDEyeiIgZmlsbD0iIzQ3ODhjNyI+PC9wYXRoPjxnPjxwYXRoIGQ9Ik0xMTMsMTE0LjY2Njc1Yy0xMS45NDcyNiwwIC0yMS42Njc3NSwtOS43MjA0OSAtMjEuNjY3NzUsLTIxLjY2Nzc1YzAsLTExLjk0NzI2IDkuNzIwNDksLTIxLjY2Nzc1IDIxLjY2Nzc1LC0yMS42Njc3NWMxMS45NDcyNiwwIDIxLjY2Nzc1LDkuNzIwNDkgMjEuNjY3NzUsMjEuNjY3NzVjMCwxMS45NDcyNiAtOS43MjA0OSwyMS42Njc3NSAtMjEuNjY3NzUsMjEuNjY3NzV6IiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PHBhdGggZD0iTTExMywxMTYuMzMzNWMtMTIuODY3MzEsMCAtMjMuMzM0NSwtMTAuNDcwNTIgLTIzLjMzNDUsLTIzLjMzNDVjMCwtMTIuODYzOTggMTAuNDY3MTksLTIzLjMzNDUgMjMuMzM0NSwtMjMuMzM0NWMxMi44NjczMSwwIDIzLjMzNDUsMTAuNDcwNTIgMjMuMzM0NSwyMy4zMzQ1YzAsMTIuODYzOTggLTEwLjQ2NzE5LDIzLjMzNDUgLTIzLjMzNDUsMjMuMzM0NXpNMTEzLDcyLjk5OGMtMTEuMDMwNTUsMCAtMjAuMDAxLDguOTcwNDUgLTIwLjAwMSwyMC4wMDFjMCwxMS4wMzA1NSA4Ljk3MDQ1LDIwLjAwMSAyMC4wMDEsMjAuMDAxYzExLjAzMDU1LDAgMjAuMDAxLC04Ljk3MDQ1IDIwLjAwMSwtMjAuMDAxYzAsLTExLjAzMDU1IC04Ljk3MDQ1LC0yMC4wMDEgLTIwLjAwMSwtMjAuMDAxeiIgZmlsbD0iIzQ3ODhjNyI+PC9wYXRoPjwvZz48L2c+PC9nPjwvc3ZnPg==" class="rounded float-start" alt="...">
+                </div>
+                <div class="col-sm-8 bg-white rounded-right">
+                    <h3 class="mt-3 text-center">Information</h3>
+                    <hr class="bg-primary">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Email:</p>
+                            <h6 class=" text-muted" th:text="${user.email}"></h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Name</p>
+                            <h6 class="text-muted" th:text="${user.name}"></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-black">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <strong>Правила проведения экзамена</strong>
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Экзамен проходит в формате теста и состоит из нескольких вопросов. Обратите внимание, что возвращаться к вопросам нельзя. Время тестирования не ограничено. Для начала экзамена выберите предмет, нажав соответствующую кнопку.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <strong>Правила выставления оценки</strong>
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Оценка за тестирование зависит от количества правильных ответов и будет выставлена автоматически.
+                    Формула расчета : (кол-во верных ответов / кол-во вопросов) * 10
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <strong>Сдать экзамен</strong>
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="btn-group" role="group" aria-label="Basic example" th:each="subject : ${subjectList}">
+                        <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" th:data-bs-target=" '#exampleModal' + ${subject.id}" th:text="${subject.name}"></button>
+                        <div class="modal fade" th:id=" 'exampleModal' +${subject.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Подтверждение экзамена</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" th:text="'Вы выбрали предмет : ' + ${subject.name} + '. Для подтверждения нажмите кнопку ниже'"></div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a type="button" class="btn btn-primary" th:href=" '/home/subjects/subject' + ${subject.id} + '/exam'">Сдать экзамен</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="parts/footer :: footer"></footer>
 </body>
 </html>

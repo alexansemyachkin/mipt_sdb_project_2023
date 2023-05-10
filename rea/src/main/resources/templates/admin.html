@@ -1,12 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/html">
+<head th:insert="parts/head :: head"></head>
 <body>
-<div>
-  Говно работает
+<header th:insert="parts/another_header :: another_header"></header>
+<div class="container" style="margin-top: 5%;">
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
+                    <strong>Добавить новый предмет</strong>
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="container col-md-5 border border-primary rounded-3">
+                        <h6 class="text-center">Добавить новый предмет</h6>
+                        <hr class="bg-primary">
+                        <form th:action="@{home/addSubject}" method="post" th:object="${subject}">
+                            <div class="mb-3">
+                                <label for="subject_name" class="form-label">Название предмета</label>
+                                <input th:field="*{name}" class="form-control" id="subject_name">
+                            </div>
+                            <div class="d-grid  col-6 mx-auto">
+                                <button type="submit" class="btn btn-primary" style="margin-bottom: 2%;">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <strong>Добавить новый вопрос</strong>
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="container col-md-6 border border-primary rounded-3">
+                        <h6 class="text-center">Добавить новый вопрос</h6>
+                        <hr class="bg-primary">
+                        <form class="row g-3" th:action="@{home/addQuestion}" method="post">
+                            <div class="col-md-12">
+                                <label for="validationDefault01" class="form-label">Формулировка вопроса</label>
+                                <input type="text" class="form-control" id="validationDefault01" th:object="${question}" th:field="*{questionToAnswer}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="validationDefault02" class="form-label">Первый вариант ответа</label>
+                                <input type="text" class="form-control" id="validationDefault02" th:object="${question}" th:field="*{possibleAnswers.possibleAnswer1}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="validationDefault03" class="form-label">Второй вариант ответа</label>
+                                <input type="text" class="form-control" id="validationDefault03" th:object="${question}" th:field="*{possibleAnswers.possibleAnswer2}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="validationDefault04" class="form-label">Третий вариант ответа</label>
+                                <input type="text" class="form-control" id="validationDefault04" th:object="${question}" th:field="*{possibleAnswers.possibleAnswer3}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="validationDefault05" class="form-label">Четвертый вариант ответа</label>
+                                <input type="text" class="form-control" id="validationDefault05" th:object="${question}"  th:field="*{possibleAnswers.possibleAnswer4}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationDefault06" class="form-label">Предмет</label>
+                                <select class="form-select" id="validationDefault06" th:object="${subject}" th:field="*{name}" required>
+                                    <option th:each="iterator : ${subjectList}" th:value="${iterator.name}" th:text="${iterator.name}"></option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <h6>Правильный ответ</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" th:value="1" th:object="${question}" th:field="*{rightAnswerIndex}">
+                                    <label class="form-check-label" for="inlineRadio1">1</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" th:value="2" th:object="${question}" th:field="*{rightAnswerIndex}">
+                                    <label class="form-check-label" for="inlineRadio2">2</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" th:value="3" th:object="${question}" th:field="*{rightAnswerIndex}">
+                                    <label class="form-check-label" for="inlineRadio3">3</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" th:value="4" th:object="${question}" th:field="*{rightAnswerIndex}">
+                                    <label class="form-check-label" for="inlineRadio4">4</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit" style="margin-bottom: 2%;">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<footer th:insert="parts/footer :: footer"></footer>
 </body>
 </html>
