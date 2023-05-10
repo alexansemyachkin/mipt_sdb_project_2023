@@ -1,7 +1,6 @@
 insert into role (id, name)
 values (1, 'ROLE_ADMIN'),
-       (2, 'ROLE_EXAMINER'),
-       (3, 'ROLE_STUDENT');
+       (2, 'ROLE_STUDENT');
 
 insert into subject (id, name, department)
 values (1, 'Введение в математический анализ', 'Кафедра высшей математики'),
