@@ -53,9 +53,6 @@ public class RegistrationController {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "registration";
         }
-
-        System.out.println("я здесь");
-
         try {
             User user = userService.register(userDTO);
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword());
@@ -65,7 +62,6 @@ public class RegistrationController {
             redirectAttributes.addAttribute("id", user.getId());
             redirectAttributes.addFlashAttribute("message", "Registration successful");
             return "redirect:/home/student";
-
         } catch (UserAlreadyExistsException exception) {
             bindingResult.rejectValue("username", "error.user", "User with this username already exists");
             return "registration";
