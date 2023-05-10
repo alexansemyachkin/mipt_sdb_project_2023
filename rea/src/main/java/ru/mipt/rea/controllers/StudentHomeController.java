@@ -3,6 +3,7 @@ package ru.mipt.rea.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +27,10 @@ public class StudentHomeController {
     }
 
     @GetMapping
-    public String StudentHomePage() {
-        return "redirect:/home/student/" + userId();
-    }
-
-    @GetMapping("/{id}")
-    public String ExactStudentHomePage() {
+    public String StudentHomePage(@ModelAttribute("userId") int userId,  Model model) {
+        String name = userService.findById(userId).getName();
+        model.addAttribute("name", name);
         return "student_home";
     }
+
 }

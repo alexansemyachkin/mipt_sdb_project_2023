@@ -47,7 +47,6 @@ public class RegistrationController {
     public String registration(@ModelAttribute("user") @Valid UserDTO userDTO,
                                BindingResult bindingResult,
                                Model model,
-                               RedirectAttributes redirectAttributes,
                                HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
@@ -55,12 +54,11 @@ public class RegistrationController {
         }
         try {
             User user = userService.register(userDTO);
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword());
+            UsernamePasswordAuthenticationToken token =
+                    new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword());
             token.setDetails(new WebAuthenticationDetails(request));
             Authentication authentication = authenticationProvider.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            redirectAttributes.addAttribute("id", user.getId());
-            redirectAttributes.addFlashAttribute("message", "Registration successful");
             return "redirect:/home/student";
         } catch (UserAlreadyExistsException exception) {
             bindingResult.rejectValue("username", "error.user", "User with this username already exists");

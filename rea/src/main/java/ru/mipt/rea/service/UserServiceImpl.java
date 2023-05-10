@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService{
         return userRepo.findByEmail(email);
     }
 
+    public User findById(int id) {
+        return userRepo.findById(id);
+    }
+
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByEmail(username);
         if (user == null) {
