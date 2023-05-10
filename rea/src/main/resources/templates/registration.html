@@ -15,12 +15,15 @@
         <h2 class="form-signin-heading">Please sign up</h2>
         <p>
             <input type="text" id="email" name="email" class="form-control" placeholder="Email" required="" autofocus="">
+            <span style="color:red" class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
         </p>
         <p>
             <input type="text" id="name" name="name" class="form-control" placeholder="Name" required="" autofocus="">
+            <span style="color:red" class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </p>
         <p>
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+            <span style="color:red" class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
         </p>
         <input name="_csrf" type="hidden" value="fc582e0b-542e-4d61-8878-40db028a70be">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
