@@ -1,9 +1,10 @@
 package ru.mipt.rea.models;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="\"user\"")

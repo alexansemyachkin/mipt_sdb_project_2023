@@ -1,7 +1,8 @@
 package ru.mipt.rea.models;
 
-import javax.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
 @Data
