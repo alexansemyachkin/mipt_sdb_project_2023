@@ -9,10 +9,10 @@ import java.util.List;
 @Repository
 public interface TicketRepo extends CrudRepository<Ticket, Integer> {
 
-    public List<Ticket> findBySubjectId(int id);
+    Ticket findById(int id);
 
-    public Ticket findById(int id);
+    List<Ticket> findBySubjectId(int id);
 
-    public List<Ticket> findAll();
+    List<Ticket> findAll();
 
 }

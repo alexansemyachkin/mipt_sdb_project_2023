@@ -7,7 +7,8 @@ import ru.mipt.rea.models.User;
 @Repository
 public interface UserRepo extends CrudRepository<User, Integer> {
 
-    public User findByEmail(String email);
-    public User findById(int id);
+    User findByEmail(String email);
+
+    User findById(int id);
 
 }

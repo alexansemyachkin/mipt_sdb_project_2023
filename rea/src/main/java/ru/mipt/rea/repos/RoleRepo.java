@@ -7,6 +7,6 @@ import ru.mipt.rea.models.Role;
 @Repository
 public interface RoleRepo extends CrudRepository<Role, Integer>{
 
-    public Role findRoleByName(String name);
+    Role findRoleByName(String name);
 
 }

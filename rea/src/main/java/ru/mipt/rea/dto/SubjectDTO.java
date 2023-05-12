@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class SubjectDTO {
 
     private int id;
+
     private String name;
 
 }
