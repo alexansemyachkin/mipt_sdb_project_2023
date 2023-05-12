@@ -29,18 +29,20 @@ public class Report {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
-    private String ticketId;
+    @ManyToOne
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
 
     private String solution;
 
     private String comment;
 
-    public Report(int mark, User student, User examiner, Subject subject, String ticketId, String solution, String comment) {
+    public Report(int mark, User student, User examiner, Subject subject, Ticket ticket, String solution, String comment) {
         this.mark = mark;
         this.student = student;
         this.examiner = examiner;
         this.subject = subject;
-        this.ticketId = ticketId;
+        this.ticket = ticket;
         this.solution = solution;
         this.comment = comment;
     }
