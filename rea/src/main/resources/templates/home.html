@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/html">
-<head th:insert="parts/head :: head"></head>
+<head th:insert="parts/head :: head">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
 <body>
 <header th:insert="parts/another_header :: another_header"></header>
 <div class="container">
@@ -53,7 +55,7 @@
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     Оценка за тестирование зависит от количества правильных ответов и будет выставлена автоматически.
-                    Формула расчета : (кол-во верных ответов / кол-во вопросов) * 10
+                    Формула расчета : $\frac{\text{кол-во верных ответов}}{\text{кол-во вопросов}} \cdot 10$
                 </div>
             </div>
         </div>
