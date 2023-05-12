@@ -13,7 +13,6 @@ public class Report {
     @Column(nullable = false)
     private int id;
 
-    @Column(nullable = false)
     private int mark;
 
     @ManyToOne
@@ -27,6 +26,8 @@ public class Report {
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
+
+    private String ticketId;
 
     private String solution;
 
