@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/html">
-<head th:insert="parts/head :: head"></head>
+<html>
+<head>
+  <<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es7"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es8"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es9"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2017"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2018"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2019"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2020"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2021"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=Symbol"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=URL"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=URLSearchParams"></script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <title>Exam process</title>
+</head>
 <body>
-<header th:insert="parts/header :: header"></header>
-<div class="container">
-  <div class="card border border-primary rounded-3 position-relative col-md-4 shadow p-3 mb-5 bg-body rounded" style="margin-top: 7%;margin-left: 33.5%;">
-    <div class="card-head text-center rounded-3 bg-primary d-grid  col-6 mx-auto text-white">
-      <h6  th:text="${subject.name}"></h6>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title text-center" th:text="${ticket_first}"></h5>
-      <h5 class="card-title text-center" th:text="${ticket_second}"></h5>
-      <hr class="bg-primary">
-      <form th:action="@{test}" method="post" th:object="${exam}">
-        <div class="mb-3">
-
-          <hr class="bg-primary">
-        </div>
-        <div>
-          <button type="submit" class="btn btn-primary">Отправить</button>
-        </div>
-      </form>
-    </div>
+<h1 th:text="${exam.ticket.question}"></h1>
+<form th:action="@{/home/{subject_id}_exam}" method="post" th:object="${exam}">
+  <label for="latexInput">Enter solution</label>
+  <br>
+  <textarea id="latexInput" name="latexInput" rows="10" cols="80" th:field="*{solution}"></textarea>
+  <br>
+  <button type="button" onclick="compileLatex()">Compile LaTeX</button>
+  <br>
+  <label for="output">Output:</label>
+  <br>
+  <div id="output"></div>
+  <div>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
-</div>
-<footer th:insert="parts/footer :: footer"></footer>
+</form>
+<script>
+  function compileLatex() {
+    const latexInput = document.getElementById("latexInput").value;
+    const output = document.getElementById("output");
+    output.innerHTML = latexInput;
+    MathJax.typeset([output]);
+  }
+</script>
 </body>
 </html>

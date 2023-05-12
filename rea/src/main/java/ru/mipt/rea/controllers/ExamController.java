@@ -8,12 +8,15 @@ import ru.mipt.rea.dto.ReportDTO;
 import ru.mipt.rea.models.Subject;
 import ru.mipt.rea.models.Ticket;
 import ru.mipt.rea.models.User;
+import ru.mipt.rea.service.ReportService;
 import ru.mipt.rea.service.SubjectService;
 import ru.mipt.rea.service.TicketService;
 import ru.mipt.rea.service.UserServiceImpl;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping("home/{subject}_exam")
+@RequestMapping("home/{subject_id}_exam")
 public class ExamController {
 
 
@@ -26,10 +29,14 @@ public class ExamController {
     @Autowired
     private UserServiceImpl userService;
 
+    @Autowired
+    private ReportService reportService;
+
     @ModelAttribute
-    public void tickets(@ModelAttribute("userId") int userId, @PathVariable("subject") String subject, Model model) {
+    public void tickets(HttpSession session, @PathVariable("subject_id") int subjectId, Model model) {
+        int userId = (Integer) session.getAttribute("userId");
         User student = userService.findById(userId);
-        Subject subjectObject = subjectService.findByName(subject);
+        Subject subjectObject = subjectService.findById(subjectId);
         Ticket ticket = ticketService.getExamTicket(subjectObject.getId());
 
         ReportDTO reportDTO = new ReportDTO(student, subjectObject, ticket);
@@ -40,12 +47,13 @@ public class ExamController {
 
 
     @GetMapping
-    public String exam() {
+    public String exam(@ModelAttribute("exam") ReportDTO reportDTO) {
         return "exam";
     }
 
     @PostMapping
-    public String submit(@ModelAttribute) {
-
+    public String submit(@ModelAttribute("exam") ReportDTO reportDTO) {
+        reportService.save(reportDTO);
+        return "redirect:/home";
     }
 }

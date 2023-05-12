@@ -47,4 +47,10 @@ public class Report {
         this.comment = comment;
     }
 
+    public Report(User student, Subject subject, Ticket ticket, String solution) {
+        this.student = student;
+        this.subject = subject;
+        this.ticket = ticket;
+        this.solution = solution;
+    }
 }
