@@ -54,7 +54,7 @@
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     Оценка за тестирование зависит от количества правильных ответов и будет выставлена автоматически.
-                    Формула расчета : $$\frac{\text{кол-во верных ответов}}{\text{кол-во вопросов}} \cdot 10$$
+                    Формула расчета : \[\frac{\text{кол-во верных ответов}}{\text{кол-во вопросов}} \cdot 10\]
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="modal-body" th:text="'Вы выбрали предмет : ' + ${subject.name} + '. Для подтверждения нажмите кнопку ниже'"></div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад</button>
                                         <a type="button" class="btn btn-primary" th:href=" '/home/subjects/subject' + ${subject.id} + '/exam'">Сдать экзамен</a>
                                     </div>
                                 </div>

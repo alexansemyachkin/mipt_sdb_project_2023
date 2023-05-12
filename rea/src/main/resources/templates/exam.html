@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/html">
+<head th:insert="parts/head :: head"></head>
+<body>
+<header th:insert="parts/header :: header"></header>
+<div class="container">
+  <div class="card border border-primary rounded-3 position-relative col-md-4 shadow p-3 mb-5 bg-body rounded" style="margin-top: 7%;margin-left: 33.5%;">
+    <div class="card-head text-center rounded-3 bg-primary d-grid  col-6 mx-auto text-white">
+      <h6  th:text="${subject.name}"></h6>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title text-center" th:text="${ticket_first}"></h5>
+      <h5 class="card-title text-center" th:text="${ticket_second}"></h5>
+      <hr class="bg-primary">
+      <form th:action="@{test}" method="post" th:object="${exam}">
+        <div class="mb-3">
+
+          <hr class="bg-primary">
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<footer th:insert="parts/footer :: footer"></footer>
+</body>
+</html>

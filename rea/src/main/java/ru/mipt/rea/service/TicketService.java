@@ -7,6 +7,7 @@ import ru.mipt.rea.models.Ticket;
 import ru.mipt.rea.repos.TicketRepo;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class TicketService {
@@ -16,9 +17,9 @@ public class TicketService {
         private TicketRepo ticketRepo;
 
 
-        public Ticket save(TicketDTO TicketDTO){
+        public void save(TicketDTO TicketDTO){
             Ticket Ticket = new Ticket(TicketDTO.getQuestion(), TicketDTO.getSubject());
-            return ticketRepo.save(Ticket);
+            ticketRepo.save(Ticket);
         }
 
 
@@ -34,6 +35,16 @@ public class TicketService {
 
         public List<Ticket> findAll() {
             return ticketRepo.findAll();
+        }
+
+        public Ticket getExamTicket(int subjectId) {
+            List<Ticket> allTickets = ticketRepo.findBySubjectId(subjectId);
+            int minInd = 0;
+            int maxInd = allTickets.size() - 1;
+
+            Random random = new Random();
+            int ticketInd = random.nextInt(maxInd - minInd + 1) + minInd;
+            return allTickets.get(ticketInd);
         }
 
 }
