@@ -17,11 +17,19 @@ public class Report {
     private int mark;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "student_id")
+    private User student;
 
     @ManyToOne
-    @JoinColumn(name = "exam_id")
-    private Exam exam;
+    @JoinColumn(name = "examiner_id")
+    private User examiner;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
+    private String solution;
+
+    private String comment;
 
 }

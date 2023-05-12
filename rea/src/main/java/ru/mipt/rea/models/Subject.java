@@ -20,10 +20,10 @@ public class Subject {
     private String name;
 
     @OneToMany(mappedBy = "subject")
-    private List<Exam> examList;
+    private List<Ticket> ticketList;
 
     @OneToMany(mappedBy = "subject")
-    private List<Ticket> ticketList;
+    private List<Report> reportList;
 
     public Subject(String name) {
         this.name = name;
