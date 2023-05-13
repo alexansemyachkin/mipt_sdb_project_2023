@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../static/mathjax-config.js" defer></script>
+    <script type="text/javascript" id="MathJax-script" defer
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/home/{subject_id}_check(subject_id=${report?.subject?.id})}" th:object="${report}" method="post">
+    <label for="name">Выберите студента</label>
+    <select name="Имя студента", id="name" th:object="${student}">
+        <div th:each="student : ${student_list}">
+            <option th:value="student" th:text="${student.name}" th:field="${report.student}"></option>
+        </div>
+    </select>
+    <button type="submit"> Выбрать</button>
+</form>
+
+<form th:object="${report}" th:action="@{/home/{subject_id}_check/submit(subject_id=${report?.subject?.id})}" method="post">
+    <div th:if="${report?.examiner != null}">
+        <textarea rows="10" cols="80" th:field="*{solution}" th:attr="onload=compileLatex()"></textarea>
+        <textarea rows="10" cols="80" th:field="*{comment}"></textarea>
+        <div th:text="Выберите оценку">
+            <input type="radio" th:field="*{mark}" th:value="1" th:label="1">
+            <input type="radio" th:field="*{mark}" th:value="2" th:label="2">
+            <input type="radio" th:field="*{mark}" th:value="3" th:label="3">
+            <input type="radio" th:field="*{mark}" th:value="4" th:label="4">
+            <input type="radio" th:field="*{mark}" th:value="5" th:label="5">
+            <input type="radio" th:field="*{mark}" th:value="6" th:label="6">
+            <input type="radio" th:field="*{mark}" th:value="7" th:label="7">
+            <input type="radio" th:field="*{mark}" th:value="8" th:label="8">
+            <input type="radio" th:field="*{mark}" th:value="9" th:label="9">
+            <input type="radio" th:field="*{mark}" th:value="10" th:label="10">
+        </div>
+        <button type="submit">Отправить</button>
+    </div>
+</form>
+<script>
+    function compileLatex() {
+        const latexInput = document.getElementById("latexInput").value;
+        const output = document.getElementById("output");
+        output.innerHTML = latexInput;
+        MathJax.typeset([output]);
+    }
+</script>
+</body>
+</html>
+

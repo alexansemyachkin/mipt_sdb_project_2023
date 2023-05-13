@@ -33,7 +33,7 @@ public class ExamController {
     private ReportService reportService;
 
     @ModelAttribute
-    public void tickets(HttpSession session, @PathVariable("subject_id") int subjectId, Model model) {
+    public void exam(HttpSession session, @PathVariable("subject_id") int subjectId, Model model) {
         int userId = (Integer) session.getAttribute("userId");
         User student = userService.findById(userId);
         Subject subjectObject = subjectService.findById(subjectId);
@@ -47,7 +47,7 @@ public class ExamController {
 
 
     @GetMapping
-    public String exam(@ModelAttribute("exam") ReportDTO reportDTO) {
+    public String examProcess(@ModelAttribute("exam") ReportDTO reportDTO) {
         return "exam";
     }
 
