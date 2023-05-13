@@ -1,21 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es7"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es8"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es9"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2017"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2018"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2019"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2020"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es2021"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=Symbol"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=URL"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=URLSearchParams"></script>
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.min.js"></script>
   <title>Exam process</title>
 </head>
 <body>
@@ -38,7 +25,7 @@
   function compileLatex() {
     const latexInput = document.getElementById("latexInput").value;
     const output = document.getElementById("output");
-    output.innerHTML = latexInput;
+    output.innerHTML = '$$' + latexInput + '$$';
     MathJax.typeset([output]);
   }
 </script>
