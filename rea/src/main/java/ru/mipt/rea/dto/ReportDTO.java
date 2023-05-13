@@ -24,7 +24,6 @@ public class ReportDTO {
 
     private User examiner;
 
-
     private Subject subject;
 
     private Ticket ticket;

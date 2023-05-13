@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.min.js"></script>
+  <script src="../static/mathjax-config.js" defer></script>
+  <script type="text/javascript" id="MathJax-script" defer
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
   <title>Exam process</title>
 </head>
 <body>
 <h1 th:text="${exam.ticket.question}"></h1>
-<form th:action="@{/home/{subject_id}_exam}" method="post" th:object="${exam}">
+<form th:action="@{/home/{subject_id}_exam(subject_id = ${exam.subject.id})}" method="post" th:object="${exam}">
   <label for="latexInput">Enter solution</label>
   <br>
   <textarea id="latexInput" name="latexInput" rows="10" cols="80" th:field="*{solution}"></textarea>
@@ -25,9 +27,10 @@
   function compileLatex() {
     const latexInput = document.getElementById("latexInput").value;
     const output = document.getElementById("output");
-    output.innerHTML = '$$' + latexInput + '$$';
+    output.innerHTML = latexInput;
     MathJax.typeset([output]);
   }
 </script>
 </body>
 </html>
+
