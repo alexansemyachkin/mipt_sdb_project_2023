@@ -5,12 +5,12 @@
   <script type="text/javascript" id="MathJax-script" defer
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
   </script>
-  <title>Exam process</title>
+  <title>Проверочная работа началась</title>
 </head>
 <body>
 <h1 th:text="${exam.ticket.question}"></h1>
 <form th:action="@{/home/{subject_id}_exam(subject_id = ${exam.subject.id})}" method="post" th:object="${exam}">
-  <label for="latexInput">Enter solution</label>
+  <label for="latexInput">Введите решение</label>
   <br>
   <textarea id="latexInput" name="latexInput" rows="10" cols="80" th:field="*{solution}"></textarea>
   <br>
