@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.mipt.rea.dto.ReportDTO;
 import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.models.Report;
-import ru.mipt.rea.models.Subject;
-import ru.mipt.rea.models.Ticket;
 import ru.mipt.rea.models.User;
 import ru.mipt.rea.service.ReportService;
 import ru.mipt.rea.service.SubjectService;
@@ -19,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("home/{subject_id}_check")
+@RequestMapping("examiner/{subject_id}_check")
 public class CheckExamController {
 
     @Autowired

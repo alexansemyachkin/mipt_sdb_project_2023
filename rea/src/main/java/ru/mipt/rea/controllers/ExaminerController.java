@@ -46,7 +46,7 @@ public class ExaminerController {
     public String ExaminerHomePage(@ModelAttribute("userId") int userId,  Model model) {
         User user = userService.findById(userId);
         model.addAttribute("user", user);
-        return "examiner_home_page";
+        return "examiner_home";
     }
 
 }
