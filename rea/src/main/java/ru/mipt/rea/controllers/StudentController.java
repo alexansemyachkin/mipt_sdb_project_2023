@@ -1,6 +1,5 @@
 package ru.mipt.rea.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,13 +16,13 @@ import ru.mipt.rea.service.UserServiceImpl;
 import java.util.List;
 
 @Controller
-@RequestMapping("home/examiner")
+@RequestMapping("/student")
 @SessionAttributes("userId")
-public class ExaminerHomeController {
+public class StudentController {
+
 
     @Autowired
     private UserServiceImpl userService;
-
 
     @Autowired
     private SubjectService subjectService;
@@ -43,10 +42,10 @@ public class ExaminerHomeController {
     }
 
     @GetMapping
-    public String ExaminerHomePage(@ModelAttribute("userId") int userId,  Model model) {
+    public String StudentHomePage(@ModelAttribute("userId") int userId,  Model model) {
         User user = userService.findById(userId);
         model.addAttribute("user", user);
-        return "examiner_home_page";
+        return "student_home";
     }
 
 }

@@ -50,7 +50,7 @@ public class ReportService {
         return reportRepo.save(report);
     }
 
-    public Report update (ReportDTO reportDTO) {
+    public Report update(ReportDTO reportDTO) {
         Report report = new Report(reportDTO.getMark(),
                 reportDTO.getStudent(),
                 reportDTO.getExaminer(),
