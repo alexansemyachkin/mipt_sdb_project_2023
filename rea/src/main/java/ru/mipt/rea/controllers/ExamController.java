@@ -16,7 +16,7 @@ import ru.mipt.rea.service.UserServiceImpl;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("home/{subject_id}_exam")
+@RequestMapping("/student/exam/{subject_id}")
 public class ExamController {
 
 
@@ -54,6 +54,6 @@ public class ExamController {
     @PostMapping
     public String submit(@ModelAttribute("exam") ReportDTO reportDTO) {
         reportService.save(reportDTO);
-        return "redirect:/home";
+        return "redirect:/student";
     }
 }
