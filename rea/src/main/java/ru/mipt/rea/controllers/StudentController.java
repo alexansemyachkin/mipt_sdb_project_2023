@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import ru.mipt.rea.dto.SubjectDTO;
 import ru.mipt.rea.dto.UserDTO;
+import ru.mipt.rea.service.ReportService;
 import ru.mipt.rea.service.SubjectService;
 import ru.mipt.rea.service.UserServiceImpl;
 
@@ -28,12 +29,22 @@ public class StudentController {
 
     private final SubjectService subjectService;
 
+    private final ReportService reportService;
+
 
     @ModelAttribute
     public void userId(Model model) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.findByEmail(email).getId();
         model.addAttribute("userId", userId);
+    }
+
+    @ModelAttribute
+    public void averageScore(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        int userId = userService.findByEmail(email).getId();
+        double average = reportService.averageScore(userId);
+        model.addAttribute("average_score", average);
     }
 
     @ModelAttribute

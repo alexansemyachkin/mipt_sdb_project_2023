@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.mipt.rea.dto.ReportDTO;
 import ru.mipt.rea.models.Report;
-import ru.mipt.rea.models.User;
 import ru.mipt.rea.repos.ReportRepo;
-import ru.mipt.rea.repos.UserRepo;
 
 import java.util.List;
 import java.util.Random;
@@ -16,8 +14,6 @@ import java.util.Random;
 public class ReportService {
 
     private final ReportRepo reportRepo;
-
-    private final UserRepo userRepo;
 
     private final Convertor convertor;
 
@@ -58,6 +54,17 @@ public class ReportService {
     public void save(ReportDTO reportDTO) {
         Report report = covertToEntity(reportDTO);
         reportRepo.save(report);
+    }
+
+    public double averageScore(int studentId) {
+        List<Integer> markList = reportRepo.findByStudentId(studentId).stream()
+                .map(Report::getMark)
+                .toList();
+
+        return markList.parallelStream()
+                .mapToDouble(Integer::doubleValue)
+                .average()
+                .orElse(0.0);
     }
 
 
