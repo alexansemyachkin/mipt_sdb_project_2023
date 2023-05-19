@@ -6,8 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.mipt.rea.dto.ReportDTO;
-import ru.mipt.rea.dto.SubjectDTO;
 import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.exception.UserAlreadyExistsException;
 import ru.mipt.rea.models.Role;
@@ -16,7 +14,6 @@ import ru.mipt.rea.repos.RoleRepo;
 import ru.mipt.rea.repos.UserRepo;
 
 import java.util.Collections;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -25,12 +22,6 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder;
 
     private final UserRepo userRepo;
-
-    private final SubjectService subjectService;
-
-    private final TicketService ticketService;
-
-    private final ReportService reportService;
 
     private final RoleRepo roleRepo;
 
@@ -83,13 +74,6 @@ public class UserServiceImpl implements UserService {
 
     private SimpleGrantedAuthority mapRolesToAuthorities(Role role){
         return new SimpleGrantedAuthority(role.getName());
-    }
-
-    public List<SubjectDTO> getStudentSubjects(int studentId) {
-        List<SubjectDTO> subjectList = subjectService.findAll();
-        List<ReportDTO> reportList = reportService.findByStudentId(studentId);
-        subjectList.removeIf(subject -> ticketService.findTicketBySubjectId(subject.getId()).isEmpty());
-
     }
 
 }
