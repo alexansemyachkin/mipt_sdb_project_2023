@@ -9,6 +9,7 @@ import ru.mipt.rea.repos.ReportRepo;
 import ru.mipt.rea.repos.UserRepo;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -43,9 +44,9 @@ public class ReportService {
         return convertToDtoList(reportList);
     }
 
-    public ReportDTO findByStudentId(int id) {
-        Report report = reportRepo.findByStudentId(id);
-        return convertToDto(report);
+    public List<ReportDTO> findByStudentId(int id) {
+        List<Report> reportList = reportRepo.findByStudentId(id);
+        return convertToDtoList(reportList);
     }
 
 
@@ -55,6 +56,16 @@ public class ReportService {
                 .map(ReportDTO::getStudent)
                 .map(user -> userRepo.findById(user.getId())) // преобразуем каждый объект User с помощью метода getUserById()
                 .toList();
+    }
+
+    public ReportDTO getExamReport(int subjectId) {
+        List<ReportDTO> allReports = findBySubjectIdAndMarkEquals(subjectId, 0);
+        int minInd = 0;
+        int maxInd = allReports.size() - 1;
+
+        Random random = new Random();
+        int reportId = random.nextInt(maxInd - minInd + 1) + minInd;
+        return allReports.get(reportId);
     }
 
     public void save(ReportDTO reportDTO) {
