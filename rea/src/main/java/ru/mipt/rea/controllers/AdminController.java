@@ -45,7 +45,7 @@ public class AdminController {
     public String AdminHomePage(Model model) {
         List<Subject> subjectList = subjectService.findAll();
         model.addAttribute("subject_list", subjectList);
-        return "admin";
+        return "admin_home";
     }
 
     @PostMapping("/add_subject")

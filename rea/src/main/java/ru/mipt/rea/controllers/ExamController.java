@@ -48,7 +48,7 @@ public class ExamController {
 
     @GetMapping
     public String examProcess(@ModelAttribute("exam") ReportDTO reportDTO) {
-        return "exam";
+        return "student_exam";
     }
 
     @PostMapping

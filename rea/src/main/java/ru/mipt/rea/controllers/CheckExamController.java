@@ -14,11 +14,7 @@ import ru.mipt.rea.service.TicketService;
 import ru.mipt.rea.service.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("examiner/{subject_id}_check")
@@ -46,7 +42,7 @@ public class CheckExamController {
        List<User> studentList = reportService.findStudentsBySubjectId(subjectId);
        model.addAttribute("student_list", studentList);
        model.addAttribute("subject_id", subjectId);
-       return "check";
+       return "examiner_check";
     }
 
     @PostMapping
@@ -61,7 +57,7 @@ public class CheckExamController {
     public String review(@ModelAttribute("report") Report report, HttpSession httpSession) {
         int examiner_id = (Integer) httpSession.getAttribute("userId");
         report.setExaminer(userService.findById(examiner_id));
-        return "check";
+        return "examiner_check";
     }
 
     @PostMapping("/submit")

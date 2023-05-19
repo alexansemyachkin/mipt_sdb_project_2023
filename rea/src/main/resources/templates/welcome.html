@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:insert="parts/head :: head"></head>
+<head th:insert="parts/head :: head">
+    <title>Welcome</title>
+</head>
 <body>
-<!--<header th:insert="parts/welcome_header :: header"></header>-->
 <main>
     <div style="text-align: center; margin-left: 17%; margin-right: 20%; margin-top: 5%;">
         <h1>Добро пожаловать в онлайн систему проверочных работ</h1>
         <div class="mb-5">
-            <a href="/registration" class="btn btn-primary btn-lg px-4">Зарегистрироваться</a>
-            <a href="/login" class="btn btn-primary btn-lg px-4">Войти</a>
+            <a class="btn btn-primary btn-lg px-4" href="/registration">Зарегистрироваться</a>
+            <a class="btn btn-primary btn-lg px-4" href="/login">Войти</a>
         </div>
     </div>
 </main>

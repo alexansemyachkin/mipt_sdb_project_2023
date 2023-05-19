@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Введите данные для входа</title>
+
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" rel="stylesheet">
+
+    <script crossorigin="anonymous"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link crossorigin="anonymous" href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet">
+</head>
+<body>
+<div>
+    <form class="form-signin" method="post" th:action="@{/login}">
+        <h2 class="form-signin-heading">Введите данные для входа</h2>
+        <p>
+            <input autofocus="" class="form-control" id="email" name="username" placeholder="почта" type="email">
+        </p>
+        <p>
+            <input class="form-control" id="password" name="password" placeholder="пароль" type="password">
+            <span class="error" style="color:red" th:if="${param.error}">Неправильная почта или пароль</span>
+        </p>
+        <input name="_csrf" type="hidden" value="fc582e0b-542e-4d61-8878-40db028a70be">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+    </form>
+</div>
+</body>
+</html>
