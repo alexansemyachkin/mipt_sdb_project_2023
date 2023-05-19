@@ -11,15 +11,22 @@
     <title>Title</title>
 </head>
 <body>
-<div th:text="${report.ticket.question}"></div>
+<div th:utext="${report.ticket.question}"></div>
 <div th:text="${report.solution}" onload="compileLatex()"></div>
 <form method="post" th:action="@{/examiner/approve/{subject_id}(subject_id=${report.subject.id})}" th:object="${report}">
     <label> Комментарий
-        <textarea cols="80" rows="10" th:field="*{comment}"></textarea>
+        <textarea cols="80" rows="10"  id="latexInput" name="latexInput" th:field="*{comment}"></textarea>
+        <button onclick="compileLatex()" type="button">Compile LaTeX</button>
+        <br>
+        <label for="output">Output:</label>
+        <br>
+        <div id="output"></div>
     </label>
     <div>Выберите оценку</div>
     <div th:each="value: ${#numbers.sequence(2, 10)}">
-        <input type="radio" th:field="*{mark}" th:value="${value}">
+        <label>
+            <input type="radio" th:field="*{mark}" th:value="${value}">
+        </label>
         <label th:text="${value}"></label>
     </div>
     <div>

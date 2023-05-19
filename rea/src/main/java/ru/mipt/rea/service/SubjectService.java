@@ -51,8 +51,17 @@ public class SubjectService {
     }
 
     public List<SubjectDTO> findSubjectsToApprove() {
-        List<Report> reportList = reportRepo.findByMarkEquals(0);
-        List<Subject> subjectList = reportList.stream()
+        List<Report> reportToApproveList = reportRepo.findByMarkEquals(0);
+        List<Subject> subjectList = reportToApproveList.stream()
+                .map(Report::getSubject)
+                .distinct()
+                .toList();
+        return convertToDtoList(subjectList);
+    }
+
+    public List<SubjectDTO> findSubjectsToReview(int studentId) {
+        List<Report> reportToReviewList = reportRepo.findByStudentIdAndMarkIsNot(studentId, 0);
+        List<Subject> subjectList = reportToReviewList.stream()
                 .map(Report::getSubject)
                 .distinct()
                 .toList();

@@ -35,9 +35,7 @@ public class ExamController {
         UserDTO student = userService.findById(userId);
         SubjectDTO subject = subjectService.findById(subjectId);
         TicketDTO ticket = ticketService.getExamTicket(subject.getId());
-
         ReportDTO reportDTO = new ReportDTO(student, subject, ticket);
-
         model.addAttribute("exam", reportDTO);
 
     }

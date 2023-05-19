@@ -85,16 +85,16 @@
             <div aria-labelledby="headingThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
                  id="collapseThree">
                 <div class="accordion-body">
-                    <div aria-label="Basic example" class="btn-group" role="group" th:each="subject : ${subjects}">
+                    <div aria-label="Basic example" class="btn-group" role="group" th:each="subject : ${subjects_to_pass}">
                         <button class="btn btn-primary rounded-pill" data-bs-toggle="modal"
                                 th:data-bs-target=" '#exampleModal' + ${subject.id}"
                                 th:text="${subject.name}" type="button"></button>
-                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
+                        <div aria-hidden="true" aria-labelledby="exampleModalLabelOne" class="modal fade"
                              tabindex="-1" th:id=" 'exampleModal' +${subject.id}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Подтверждение экзамена</h5>
+                                        <h5 class="modal-title" id="exampleModalLabelOne">Подтверждение экзамена</h5>
                                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
                                                 type="button"></button>
                                     </div>
@@ -106,6 +106,44 @@
                                         <a class="btn btn-primary" th:href=" '/student/exam/' + ${subject.id}"
                                            type="button">Сдать экзамен</a>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+            <button aria-controls="collapseFour" aria-expanded="false" class="accordion-button collapsed"
+                    data-bs-target="#collapseFour" data-bs-toggle="collapse" type="button">
+                <strong>Посмотреть результаты проерки</strong>
+            </button>
+        </h2>
+        <div aria-labelledby="headingFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+             id="collapseFour">
+            <div class="accordion-body">
+                <div aria-label="Basic example" class="btn-group" role="group" th:each="subject : ${subjects_to_review}">
+                    <button class="btn btn-primary rounded-pill" data-bs-toggle="modal"
+                            th:data-bs-target=" '#exampleModal' + ${subject.id}"
+                            th:text="${subject.name}" type="button"></button>
+                    <div aria-hidden="true" aria-labelledby="exampleModalLabelTwo" class="modal fade"
+                         tabindex="-1" th:id=" 'exampleModal' +${subject.id}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabelTwo">Подтверждение обзора проверки</h5>
+                                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                            type="button"></button>
+                                </div>
+                                <div class="modal-body"
+                                     th:text="'Вы выбрали для обзора предмет : ' + ${subject.name} + '. Для подтверждения нажмите кнопку ниже'"></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
+                                    </button>
+                                    <a class="btn btn-primary" th:href=" '/student/review/' + ${subject.id}"
+                                       type="button">Посмотреть результаты проерки</a>
                                 </div>
                             </div>
                         </div>

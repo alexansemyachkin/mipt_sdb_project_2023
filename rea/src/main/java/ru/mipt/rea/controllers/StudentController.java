@@ -46,11 +46,19 @@ public class StudentController {
     }
 
     @ModelAttribute
-    public void subjects(Model model) {
+    public void subjectsToPass(Model model) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         int studentId = userService.findByEmail(email).getId();
-        List<SubjectDTO> subjects = subjectService.findSubjectsToPass(studentId);
-        model.addAttribute("subjects", subjects);
+        List<SubjectDTO> subjectsToPass = subjectService.findSubjectsToPass(studentId);
+        model.addAttribute("subjects_to_pass", subjectsToPass);
+    }
+
+    @ModelAttribute
+    public void subjectsToReview(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        int studentId = userService.findByEmail(email).getId();
+        List<SubjectDTO> subjectsToReview = subjectService.findSubjectsToReview(studentId);
+        model.addAttribute("subjects_to_review", subjectsToReview);
     }
 
     @GetMapping

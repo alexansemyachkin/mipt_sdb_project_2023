@@ -40,6 +40,11 @@ public class ReportService {
         return convertToDtoList(reportList);
     }
 
+    public ReportDTO findByStudentIdAndSubjectId(int studentId, int subjectId) {
+        Report report = reportRepo.findByStudentIdAndSubjectId(studentId, subjectId);
+        return convertToDto(report);
+    }
+
 
     public ReportDTO getExamReport(int subjectId) {
         List<ReportDTO> allReports = findBySubjectIdAndMarkEquals(subjectId, 0);

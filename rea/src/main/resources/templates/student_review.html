@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Обзор результатов проверки</title>
+  <script defer src="../static/mathjax-config.js"></script>
+  <script defer id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+          type="text/javascript">
+  </script>
+</head>
+<body>
+<div th:utext="${report.ticket.question}"></div>
+<label> Ваше решение:
+  <div th:text="${report.solution}" onload="compileLatex()"></div>
+</label>
+  <label> Комментарий проверяющего:
+    <div th:text="${report.comment}" onload="compileLatex()"></div>
+  </label>
+  <div>Ваша оценка:</div>
+    <div th:text="${report.mark}"></div>
+  <div>
+    <a class="btn btn-primary" th:href="'/student'"
+       type="button">Вернуться на домашнюю страницу</a>
+  </div>
+<script>
+  function compileLatex() {
+    const latexInput = document.getElementById("latexInput").value;
+    const output = document.getElementById("output");
+    output.innerHTML = latexInput;
+    MathJax.typeset([output]);
+  }
+</script>
+</body>
+</html>
+
