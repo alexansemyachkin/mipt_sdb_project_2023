@@ -8,7 +8,7 @@ import ru.mipt.rea.models.User;
 
 public interface UserService extends UserDetailsService {
 
-    void register(UserDTO dto);
+    void register(UserDTO dto, String roleName);
 
     void save(UserDTO dto);
 

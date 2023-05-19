@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService {
         return convertor.convert(user, UserDTO.class);
     }
 
-    public void register(UserDTO userDTO) {
-        userDTO.setRole(roleRepo.findRoleByName("ROLE_STUDENT"));
+    public void register(UserDTO userDTO, String roleName) {
+        userDTO.setRole(roleRepo.findRoleByName(roleName));
         UserDTO existingUser = findByEmail(userDTO.getEmail());
         if (existingUser != null) {
             throw new UserAlreadyExistsException("User with this email already exists");
@@ -53,7 +53,10 @@ public class UserServiceImpl implements UserService {
 
     public UserDTO findByEmail(String email) {
         User user = userRepo.findByEmail(email);
-        return convertToDto(user);
+        if (user != null) {
+            return convertToDto(user);
+        }
+        return null;
     }
 
     public UserDTO findById(int id) {

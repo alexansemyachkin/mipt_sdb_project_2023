@@ -50,21 +50,31 @@ public class SubjectService {
         return convertToDtoList(subjectList);
     }
 
+    public List<SubjectDTO> findSubjectsToApprove() {
+        List<Report> reportList = reportRepo.findByMarkEquals(0);
+        List<Subject> subjectList = reportList.stream()
+                .map(Report::getSubject)
+                .distinct()
+                .toList();
+        return convertToDtoList(subjectList);
+    }
+
     public SubjectDTO findByName(String name) {
         Subject subject = subjectRepo.findByName(name);
         return convertToDto(subject);
     }
 
-    public List<SubjectDTO> getStudentSubjects(int studentId) {
-        List<Report> reportList = reportRepo.findByStudentId(studentId);
-        List<Subject> subjectPassedList = new ArrayList<>(reportList.stream()
+    public List<SubjectDTO> findSubjectsToPass(int studentId) {
+        List<Report> studentReports = reportRepo.findByStudentId(studentId);
+        List<Subject> passedSubjects = studentReports.stream()
                 .map(Report::getSubject)
-                .toList());
-        List<Subject> subjectList = subjectRepo.findAll();
-        subjectList.removeAll(subjectPassedList);
-        subjectList.removeIf(subject ->
-                ticketRepo.findBySubjectId(subject.getId()).isEmpty());
-
-        return convertToDtoList(subjectList);
+                .distinct()
+                .toList();
+        List<Subject> allSubjects = subjectRepo.findAll();
+        allSubjects.removeIf(subject -> ticketRepo.findBySubjectId(subject.getId()).isEmpty() ||
+                                        passedSubjects.contains(subject));
+        return convertToDtoList(allSubjects);
     }
+
+
 }

@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface SubjectRepo extends CrudRepository<Subject, Integer> {
 
-
     Subject findById(int id);
     Subject findByName(String name);
 

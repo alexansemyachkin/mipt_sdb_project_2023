@@ -25,4 +25,16 @@ public class Subject {
     @OneToMany(mappedBy = "subject")
     private List<Report> reportList;
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Subject other = (Subject) obj;
+        return id == other.id;
+    }
+
 }

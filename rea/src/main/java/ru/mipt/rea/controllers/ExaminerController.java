@@ -37,7 +37,7 @@ public class ExaminerController {
 
     @ModelAttribute
     public void subjects(Model model) {
-        List<SubjectDTO> subjects = subjectService.findAll();
+        List<SubjectDTO> subjects = subjectService.findSubjectsToApprove();
         model.addAttribute("subjects", subjects);
     }
 

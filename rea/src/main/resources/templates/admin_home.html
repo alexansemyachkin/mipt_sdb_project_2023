@@ -71,6 +71,37 @@
                 </div>
             </div>
         </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button aria-controls="collapseThree" aria-expanded="false" class="accordion-button collapsed"
+                        data-bs-target="#collapseThree" data-bs-toggle="collapse" type="button">
+                    <strong>Добавить нового перподователя</strong>
+                </button>
+            </h2>
+            <div aria-labelledby="headingThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                 id="collapseThree">
+                <div class="accordion-body">
+                    <div class="container col-md-5 border border-primary rounded-3">
+                        <h6 class="text-center">Добавить нового экзаменатора</h6>
+                        <hr class="bg-primary">
+                        <form method="post" th:action="@{admin/add_examiner}" th:object="${examiner}">
+                            <div class="mb-3">
+                                <label class="form-label" for="examiner_name">Имя преподователя</label>
+                                <input class="form-control" id="examiner_name" th:field="*{name}">
+                                <label class="form-label" for="examiner_email">Почта преподователя</label>
+                                <input class="form-control" id="examiner_email" th:field="*{email}">
+                                <label class="form-label" for="examiner_password">Пароль преподователя</label>
+                                <input class="form-control" id="examiner_password" th:field="*{password}">
+                            </div>
+                            <div class="d-grid  col-6 mx-auto">
+                                <button class="btn btn-primary" style="margin-bottom: 2%;" type="submit">Добавить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <footer th:insert="parts/footer :: footer"></footer>

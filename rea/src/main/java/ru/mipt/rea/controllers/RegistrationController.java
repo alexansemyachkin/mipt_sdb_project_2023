@@ -50,7 +50,7 @@ public class RegistrationController {
             return "registration";
         }
         try {
-            userService.register(userDTO);
+            userService.register(userDTO, "ROLE_STUDENT");
             UsernamePasswordAuthenticationToken token =
                     new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword());
             token.setDetails(new WebAuthenticationDetails(request));

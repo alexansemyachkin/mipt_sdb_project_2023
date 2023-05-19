@@ -44,19 +44,6 @@ public class ReportService {
         return convertToDtoList(reportList);
     }
 
-    public List<ReportDTO> findByStudentId(int id) {
-        List<Report> reportList = reportRepo.findByStudentId(id);
-        return convertToDtoList(reportList);
-    }
-
-
-    public List<User> findStudentsBySubjectId(int id) {
-        List<ReportDTO> reportList = findBySubjectIdAndMarkEquals(id, 0);
-        return reportList.stream()
-                .map(ReportDTO::getStudent)
-                .map(user -> userRepo.findById(user.getId())) // преобразуем каждый объект User с помощью метода getUserById()
-                .toList();
-    }
 
     public ReportDTO getExamReport(int subjectId) {
         List<ReportDTO> allReports = findBySubjectIdAndMarkEquals(subjectId, 0);

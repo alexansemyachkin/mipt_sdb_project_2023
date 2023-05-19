@@ -41,20 +41,4 @@ public class Report {
 
     private String comment;
 
-//    public Report(int mark, User student, User examiner, Subject subject, Ticket ticket, String solution, String comment) {
-//        this.mark = mark;
-//        this.student = student;
-//        this.examiner = examiner;
-//        this.subject = subject;
-//        this.ticket = ticket;
-//        this.solution = solution;
-//        this.comment = comment;
-//    }
-//
-//    public Report(User student, Subject subject, Ticket ticket, String solution) {
-//        this.student = student;
-//        this.subject = subject;
-//        this.ticket = ticket;
-//        this.solution = solution;
-//    }
 }

@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReportDTO {
 
-
     private int id;
 
     private int mark;
-
 
     private UserDTO student;
 
@@ -26,17 +24,6 @@ public class ReportDTO {
     private String solution;
 
     private String comment;
-
-    public ReportDTO(int mark, UserDTO student, UserDTO examiner, SubjectDTO subject,
-                     TicketDTO ticket, String solution, String comment) {
-        this.mark = mark;
-        this.student = student;
-        this.examiner = examiner;
-        this.subject = subject;
-        this.ticket = ticket;
-        this.solution = solution;
-        this.comment = comment;
-    }
 
     public ReportDTO(UserDTO student, SubjectDTO subject, TicketDTO ticket) {
         this.student = student;

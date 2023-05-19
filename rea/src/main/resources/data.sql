@@ -6,7 +6,7 @@ values (1, 'ROLE_ADMIN'),
 insert into "user" (id, email, name, password, role_id)
 values (1, 'admin@mail.ru', 'admin', '$2a$12$I7kmiueHP2g/HwJ5yHp50eH29JsMQN3pdDjqa51tbWDyy04Jr5kGK', 1),
        (2, 'examiner@mail.ru', 'examiner', '$2a$12$HxLjtKw.E4V/0BLD1/DY5OK0ZOc0xfjptsVAJSGTwkXPWmDp8CThi', 2),
-       (3, 'test_student@mail.ru', 'student', '$2a$12$DUOsYwRmkaEeW2iMqEtlHuX2z2ZEqIDQaSD7YHoaMqxmL6H20OX/W', 3);
+       (3, 'student@mail.ru', 'student', '$2a$12$DUOsYwRmkaEeW2iMqEtlHuX2z2ZEqIDQaSD7YHoaMqxmL6H20OX/W', 3);
 
 insert into subject (id, name)
 values (1, 'Введение в математический анализ'),
@@ -47,4 +47,3 @@ values (1, '1. Теорема Кантора о вложенных отрезк�
        (28, '1. Сортировка слиянием без доп.памяти </br> 2. AVl-дерево', 6),
        (29, '1. Односвязные и двусвязные списки </br> 2. Нахождение НВП с помощью динамического программирования', 6),
        (30, '1. Splay-дерево </br> 2. Задача о рюкзаке', 6);
-

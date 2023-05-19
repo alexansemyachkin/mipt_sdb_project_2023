@@ -40,7 +40,7 @@ public class StudentController {
     public void subjects(Model model) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         int studentId = userService.findByEmail(email).getId();
-        List<SubjectDTO> subjects = subjectService.getStudentSubjects(studentId);
+        List<SubjectDTO> subjects = subjectService.findSubjectsToPass(studentId);
         model.addAttribute("subjects", subjects);
     }
 

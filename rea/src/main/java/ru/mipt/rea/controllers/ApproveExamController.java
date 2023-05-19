@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("examiner/approve/{subject_id}")
 @AllArgsConstructor
-public class CheckExamController {
+public class ApproveExamController {
 
     private final ReportService reportService;
 
@@ -39,6 +39,5 @@ public class CheckExamController {
         reportService.save(report);
         return "redirect:/examiner";
     }
-
 
 }

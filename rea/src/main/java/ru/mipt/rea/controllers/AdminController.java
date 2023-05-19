@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.mipt.rea.dto.SubjectDTO;
 import ru.mipt.rea.dto.TicketDTO;
+import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.models.Subject;
 import ru.mipt.rea.service.SubjectService;
 import ru.mipt.rea.service.TicketService;
@@ -39,6 +40,9 @@ public class AdminController {
         return new TicketDTO();
     }
 
+    @ModelAttribute("examiner")
+    public UserDTO userDTO() {return new UserDTO();}
+
 
     @GetMapping
     public String AdminHomePage(Model model) {
@@ -58,6 +62,12 @@ public class AdminController {
         String subjectName = subjectDTO.getName();
         ticketDTO.setSubject(subjectService.findByName(subjectName));
         ticketService.save(ticketDTO);
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/add_examiner")
+    public String addExaminer(@ModelAttribute("examiner") UserDTO userDTO) {
+        userService.register(userDTO, "ROLE_EXAMINER");
         return "redirect:/admin";
     }
 }
