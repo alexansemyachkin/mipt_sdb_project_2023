@@ -10,7 +10,7 @@
     <title>Проверочная работа началась</title>
 </head>
 <body>
-<h1 th:text="${exam.ticket.question}"></h1>
+<h1 th:utext="${exam.ticket.question}"></h1>
 <form method="post" th:action="@{/student/exam/{subject_id}(subject_id = ${exam.subject.id})}" th:object="${exam}">
     <label for="latexInput">Введите решение</label>
     <br>
