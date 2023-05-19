@@ -1,5 +1,6 @@
 package ru.mipt.rea.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +9,6 @@ import ru.mipt.rea.dto.ReportDTO;
 import ru.mipt.rea.dto.SubjectDTO;
 import ru.mipt.rea.dto.TicketDTO;
 import ru.mipt.rea.dto.UserDTO;
-import ru.mipt.rea.models.Subject;
-import ru.mipt.rea.models.Ticket;
-import ru.mipt.rea.models.User;
 import ru.mipt.rea.service.ReportService;
 import ru.mipt.rea.service.SubjectService;
 import ru.mipt.rea.service.TicketService;
@@ -20,20 +18,17 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/student/exam/{subject_id}")
+@AllArgsConstructor
 public class ExamController {
 
 
-    @Autowired
-    private TicketService ticketService;
+    private final TicketService ticketService;
 
-    @Autowired
-    private SubjectService subjectService;
+    private final SubjectService subjectService;
 
-    @Autowired
-    private UserServiceImpl userService;
+    private final UserServiceImpl userService;
 
-    @Autowired
-    private ReportService reportService;
+    private final ReportService reportService;
 
     @ModelAttribute
     public void exam(HttpSession session, @PathVariable("subject_id") int subjectId, Model model) {

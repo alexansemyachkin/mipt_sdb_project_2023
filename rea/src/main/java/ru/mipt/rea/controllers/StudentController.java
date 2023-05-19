@@ -1,5 +1,6 @@
 package ru.mipt.rea.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,14 +19,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/student")
 @SessionAttributes("userId")
+@AllArgsConstructor
 public class StudentController {
 
 
-    @Autowired
-    private UserServiceImpl userService;
+    private final UserServiceImpl userService;
 
-    @Autowired
-    private SubjectService subjectService;
+    private final SubjectService subjectService;
 
 
     @ModelAttribute
