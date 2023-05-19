@@ -14,6 +14,7 @@ import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.service.SubjectService;
 import ru.mipt.rea.service.UserServiceImpl;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -37,7 +38,9 @@ public class StudentController {
 
     @ModelAttribute
     public void subjects(Model model) {
-        List<SubjectDTO> subjects = subjectService.findAll();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        int studentId = userService.findByEmail(email).getId();
+        List<SubjectDTO> subjects = subjectService.getStudentSubjects(studentId);
         model.addAttribute("subjects", subjects);
     }
 
