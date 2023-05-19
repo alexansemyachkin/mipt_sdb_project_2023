@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import ru.mipt.rea.dto.ReportDTO;
 import ru.mipt.rea.dto.SubjectDTO;
 import ru.mipt.rea.dto.TicketDTO;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/student/exam/{subject_id}")
 @AllArgsConstructor
+@SessionAttributes("exam")
 public class ExamController {
 
 
@@ -36,10 +38,8 @@ public class ExamController {
         SubjectDTO subject = subjectService.findById(subjectId);
         TicketDTO ticket = ticketService.getExamTicket(subject.getId());
         ReportDTO reportDTO = new ReportDTO(student, subject, ticket);
-        model.addAttribute("exam", reportDTO);
-
+        session.setAttribute("exam", reportDTO);
     }
-
 
     @GetMapping
     public String examProcess(@ModelAttribute("exam") ReportDTO reportDTO) {
@@ -47,8 +47,9 @@ public class ExamController {
     }
 
     @PostMapping
-    public String submit(@ModelAttribute("exam") ReportDTO reportDTO) {
+    public String submit(@ModelAttribute("exam") ReportDTO reportDTO, SessionStatus sessionStatus) {
         reportService.save(reportDTO);
+        sessionStatus.setComplete();
         return "redirect:/student";
     }
 }
