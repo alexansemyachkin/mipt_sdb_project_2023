@@ -60,7 +60,7 @@
                   <div class="modal-body" th:text="'Вы выбрали для проверки предмет : ' + ${subject.name} + '. Для подтверждения нажмите кнопку ниже'"></div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a type="button" class="btn btn-primary" th:href=" '/home/' + ${subject.id} + '_check'">Проверить экзамен</a>
+                    <a type="button" class="btn btn-primary" th:href=" '/examiner/' + ${subject.id} + '_check'">Проверить экзамен</a>
                   </div>
                 </div>
               </div>

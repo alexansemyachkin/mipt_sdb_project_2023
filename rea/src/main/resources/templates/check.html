@@ -9,31 +9,33 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/home/{subject_id}_check(subject_id=${report?.subject?.id})}" th:object="${report}" method="post">
+<form th:action="@{/examiner/{subject_id}_check(subject_id=${subject_id})}" method="post">
     <label for="name">Выберите студента</label>
-    <select name="Имя студента", id="name" th:object="${student}">
-        <div th:each="student : ${student_list}">
-            <option th:value="student" th:text="${student.name}" th:field="${report.student}"></option>
-        </div>
+    <select name="Имя студента" id="name" th:object="${student_object}" th:field="*{id}">
+        <option th:each="student : ${student_list}"  th:value="${student.id}" th:text="${student.name}"></option>
     </select>
     <button type="submit"> Выбрать</button>
 </form>
 
-<form th:object="${report}" th:action="@{/home/{subject_id}_check/submit(subject_id=${report?.subject?.id})}" method="post">
+<form th:object="${report}" th:action="@{/examiner/{subject_id}_check/submit(subject_id=${report?.subject?.id})}" method="post">
     <div th:if="${report?.examiner != null}">
-        <textarea rows="10" cols="80" th:field="*{solution}" th:attr="onload=compileLatex()"></textarea>
-        <textarea rows="10" cols="80" th:field="*{comment}"></textarea>
-        <div th:text="Выберите оценку">
-            <input type="radio" th:field="*{mark}" th:value="1" th:label="1">
-            <input type="radio" th:field="*{mark}" th:value="2" th:label="2">
-            <input type="radio" th:field="*{mark}" th:value="3" th:label="3">
-            <input type="radio" th:field="*{mark}" th:value="4" th:label="4">
-            <input type="radio" th:field="*{mark}" th:value="5" th:label="5">
-            <input type="radio" th:field="*{mark}" th:value="6" th:label="6">
-            <input type="radio" th:field="*{mark}" th:value="7" th:label="7">
-            <input type="radio" th:field="*{mark}" th:value="8" th:label="8">
-            <input type="radio" th:field="*{mark}" th:value="9" th:label="9">
-            <input type="radio" th:field="*{mark}" th:value="10" th:label="10">
+        <div th:text="${report.solution}"></div>
+        <label>
+            <textarea rows="10" cols="80" th:field="*{comment}"></textarea>
+        </label>
+        <div>Выберите оценку
+            <label>
+                <input type="radio" th:field="*{mark}" th:value="1" th:label="1">
+            </label>
+<!--            <input type="radio" th:field="*{mark}" th:value="2" th:label="2">-->
+<!--            <input type="radio" th:field="*{mark}" th:value="3" th:label="3">-->
+<!--            <input type="radio" th:field="*{mark}" th:value="4" th:label="4">-->
+<!--            <input type="radio" th:field="*{mark}" th:value="5" th:label="5">-->
+<!--            <input type="radio" th:field="*{mark}" th:value="6" th:label="6">-->
+<!--            <input type="radio" th:field="*{mark}" th:value="7" th:label="7">-->
+<!--            <input type="radio" th:field="*{mark}" th:value="8" th:label="8">-->
+<!--            <input type="radio" th:field="*{mark}" th:value="9" th:label="9">-->
+<!--            <input type="radio" th:field="*{mark}" th:value="10" th:label="10">-->
         </div>
         <button type="submit">Отправить</button>
     </div>

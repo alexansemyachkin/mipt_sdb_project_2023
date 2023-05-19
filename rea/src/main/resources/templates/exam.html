@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1 th:text="${exam.ticket.question}"></h1>
-<form th:action="@{/home/exam/{subject_id}(subject_id = ${exam.subject.id})}" method="post" th:object="${exam}">
+<form th:action="@{/student/exam/{subject_id}(subject_id = ${exam.subject.id})}" method="post" th:object="${exam}">
   <label for="latexInput">Введите решение</label>
   <br>
   <textarea id="latexInput" name="latexInput" rows="10" cols="80" th:field="*{solution}"></textarea>

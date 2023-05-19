@@ -14,7 +14,11 @@ import ru.mipt.rea.service.TicketService;
 import ru.mipt.rea.service.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("examiner/{subject_id}_check")
@@ -32,28 +36,29 @@ public class CheckExamController {
     @Autowired
     private ReportService reportService;
 
-    @ModelAttribute("student")
+    @ModelAttribute("student_object")
     public UserDTO student() {
         return new UserDTO();
     }
-
 
     @GetMapping
     public String check(@PathVariable("subject_id") int subjectId, Model model) {
        List<User> studentList = reportService.findStudentsBySubjectId(subjectId);
        model.addAttribute("student_list", studentList);
+       model.addAttribute("subject_id", subjectId);
        return "check";
     }
 
     @PostMapping
-    public String pick(@ModelAttribute("student") UserDTO student, Model model) {
+    public String pick(@ModelAttribute("student_object") UserDTO student, Model model) {
+        System.out.println(student.getId());
         Report report = reportService.findByStudentId(student.getId());
         model.addAttribute("report", report);
-        return "redirect:home/{subject_id}_check/approve";
+        return "redirect:/examiner/{subject_id}_check/approve";
     }
 
     @GetMapping("/approve")
-    public String review(@ModelAttribute("report") ReportDTO report, HttpSession httpSession) {
+    public String review(@ModelAttribute("report") Report report, HttpSession httpSession) {
         int examiner_id = (Integer) httpSession.getAttribute("userId");
         report.setExaminer(userService.findById(examiner_id));
         return "check";
@@ -64,7 +69,5 @@ public class CheckExamController {
         reportService.update(reportDTO);
         return "redirect:/home/examiner";
     }
-
-
 
 }
