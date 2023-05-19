@@ -1,34 +1,43 @@
 package ru.mipt.rea.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import ru.mipt.rea.dto.ReportDTO;
 import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.service.ReportService;
-import ru.mipt.rea.service.SubjectService;
-import ru.mipt.rea.service.TicketService;
 import ru.mipt.rea.service.UserServiceImpl;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping("examiner/{subject_id}_check")
+@RequestMapping("examiner/approve/{subject_id}")
+@AllArgsConstructor
 public class CheckExamController {
 
-    @Autowired
-    private TicketService ticketService;
+    private final ReportService reportService;
 
-    @Autowired
-    private SubjectService subjectService;
+    private final UserServiceImpl userService;
 
-    @Autowired
-    private UserServiceImpl userService;
+    @ModelAttribute
+    public void getReport(@PathVariable("subject_id") int subjectId, Model model) {
+        ReportDTO report = reportService.getExamReport(subjectId);
+        model.addAttribute("report", report);
+    }
 
-    @Autowired
-    private ReportService reportService;
+    @GetMapping
+    public String approveSolution() {
+        return "examiner_approve";
+    }
 
-    @ModelAttribute("student_object")
-    public UserDTO student() {
-        return new UserDTO();
+    @PostMapping
+    public String submitComment(@ModelAttribute("report") ReportDTO report, Model model, HttpSession httpSession) {
+        int examinerId = (Integer) httpSession.getAttribute("userId");
+        UserDTO examiner = userService.findById(examinerId);
+        report.setExaminer(examiner);
+        reportService.save(report);
+        return "redirect:/examiner";
     }
 
 

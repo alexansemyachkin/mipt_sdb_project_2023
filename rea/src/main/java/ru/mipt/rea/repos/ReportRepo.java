@@ -15,7 +15,7 @@ public interface ReportRepo extends CrudRepository<Report, Integer> {
     List<Report> findBySubjectIdAndMarkEquals(int id, int mark);
     Report findByStudentIdAndSubjectId(int studentId, int subjectId);
 
-    Report findByStudentId(int id);
+    List<Report> findByStudentId(int id);
 
 
 }
