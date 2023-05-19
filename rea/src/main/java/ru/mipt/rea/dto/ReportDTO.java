@@ -3,11 +3,6 @@ package ru.mipt.rea.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.mipt.rea.models.Subject;
-import ru.mipt.rea.models.Ticket;
-import ru.mipt.rea.models.User;
-
-import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -20,20 +15,20 @@ public class ReportDTO {
     private int mark;
 
 
-    private User student;
+    private UserDTO student;
 
-    private User examiner;
+    private UserDTO examiner;
 
-    private Subject subject;
+    private SubjectDTO subject;
 
-    private Ticket ticket;
+    private TicketDTO ticket;
 
     private String solution;
 
     private String comment;
 
-    public ReportDTO(int mark, User student, User examiner, Subject subject,
-                     Ticket ticket, String solution, String comment) {
+    public ReportDTO(int mark, UserDTO student, UserDTO examiner, SubjectDTO subject,
+                     TicketDTO ticket, String solution, String comment) {
         this.mark = mark;
         this.student = student;
         this.examiner = examiner;
@@ -43,7 +38,7 @@ public class ReportDTO {
         this.comment = comment;
     }
 
-    public ReportDTO(User student, Subject subject, Ticket ticket) {
+    public ReportDTO(UserDTO student, SubjectDTO subject, TicketDTO ticket) {
         this.student = student;
         this.subject = subject;
         this.ticket = ticket;

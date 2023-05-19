@@ -43,7 +43,7 @@ public class AdminController {
 
     @GetMapping
     public String AdminHomePage(Model model) {
-        List<Subject> subjectList = subjectService.findAll();
+        List<SubjectDTO> subjectList = subjectService.findAll();
         model.addAttribute("subject_list", subjectList);
         return "admin_home";
     }

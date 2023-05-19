@@ -26,9 +26,4 @@ public class Ticket {
     @OneToMany(mappedBy = "ticket")
     private List<Report> reportList;
 
-    public Ticket(String question, Subject subject) {
-        this.question = question;
-        this.subject = subject;
-    }
-
 }

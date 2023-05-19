@@ -1,6 +1,6 @@
 package ru.mipt.rea.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,46 +16,49 @@ import ru.mipt.rea.repos.UserRepo;
 import java.util.Collections;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     private final UserRepo userRepo;
+
     private final RoleRepo roleRepo;
 
-    public User register(UserDTO userDTO) {
+    private final Convertor convertor;
+
+    public User convertToEntity(UserDTO userDTO) {
+        return convertor.convert(userDTO, User.class);
+    }
+
+    public UserDTO convertToDto(User user) {
+        return convertor.convert(user, UserDTO.class);
+    }
+
+    public void register(UserDTO userDTO) {
         userDTO.setRole(roleRepo.findRoleByName("ROLE_STUDENT"));
-        User user = findByEmail(userDTO.getEmail());
-        if (user != null) {
+        UserDTO existingUser = findByEmail(userDTO.getEmail());
+        if (existingUser != null) {
             throw new UserAlreadyExistsException("User with this email already exists");
         }
-        return save(userDTO);
+        save(userDTO);
     }
 
-    public User save(UserDTO userDTO) {
-        User user = new User(userDTO.getName(),
-                             userDTO.getEmail(),
-                             passwordEncoder.encode(userDTO.getPassword()),
-                             userDTO.getRole());
-        return userRepo.save(user);
+    public void save(UserDTO userDTO) {
+        User user = convertToEntity(userDTO);
+        String password = userDTO.getPassword();
+        user.setPassword(passwordEncoder.encode(password));
+        userRepo.save(user);
     }
 
-    public User update(UserDTO userDTO) {
-        User user = new User(userDTO.getId(),
-                             userDTO.getName(),
-                             userDTO.getEmail(),
-                             passwordEncoder.encode(userDTO.getPassword()),
-                             userDTO.getRole());
-        return userRepo.save(user);
+    public UserDTO findByEmail(String email) {
+        User user = userRepo.findByEmail(email);
+        return convertToDto(user);
     }
 
-    public User findByEmail(String email) {
-        return userRepo.findByEmail(email);
-    }
-
-    public User findById(int id) {
-        return userRepo.findById(id);
+    public UserDTO findById(int id) {
+        User user = userRepo.findById(id);
+        return convertToDto(user);
     }
 
 
@@ -71,11 +74,6 @@ public class UserServiceImpl implements UserService{
 
     private SimpleGrantedAuthority mapRolesToAuthorities(Role role){
         return new SimpleGrantedAuthority(role.getName());
-    }
-
-    public UserServiceImpl(UserRepo userRepo, RoleRepo roleRepo) {
-        this.userRepo = userRepo;
-        this.roleRepo = roleRepo;
     }
 
 }
