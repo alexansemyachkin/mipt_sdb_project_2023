@@ -1,7 +1,6 @@
 package ru.mipt.rea.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import ru.mipt.rea.service.ReportService;
 import ru.mipt.rea.service.SubjectService;
 import ru.mipt.rea.service.UserServiceImpl;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller

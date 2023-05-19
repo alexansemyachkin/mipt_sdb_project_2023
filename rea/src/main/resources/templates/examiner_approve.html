@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<div th:text="${report.ticket.question}"></div>
 <div th:text="${report.solution}" onload="compileLatex()"></div>
 <form method="post" th:action="@{/examiner/approve/{subject_id}(subject_id=${report.subject.id})}" th:object="${report}">
     <label> Комментарий

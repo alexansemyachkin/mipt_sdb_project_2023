@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.mipt.rea.dto.ReportDTO;
 import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.service.ReportService;
+import ru.mipt.rea.service.TicketService;
 import ru.mipt.rea.service.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;

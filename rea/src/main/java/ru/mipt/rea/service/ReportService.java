@@ -63,6 +63,7 @@ public class ReportService {
 
         return markList.parallelStream()
                 .mapToDouble(Integer::doubleValue)
+                .filter(mark -> mark > 0)
                 .average()
                 .orElse(0.0);
     }
