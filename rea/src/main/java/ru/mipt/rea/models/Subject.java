@@ -25,8 +25,4 @@ public class Subject {
     @OneToMany(mappedBy = "subject")
     private List<Report> reportList;
 
-    public Subject(String name) {
-        this.name = name;
-    }
-
 }

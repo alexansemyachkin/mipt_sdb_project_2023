@@ -1,6 +1,6 @@
 package ru.mipt.rea.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.mipt.rea.dto.SubjectDTO;
 import ru.mipt.rea.models.Subject;
@@ -9,25 +9,40 @@ import ru.mipt.rea.repos.SubjectRepo;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class SubjectService {
 
-    @Autowired
-    private SubjectRepo subjectRepo;
+    private final SubjectRepo subjectRepo;
+    private final Convertor convertor;
 
-    public Subject save(SubjectDTO subjectDTO) {
-        Subject subject = new Subject(subjectDTO.getName());
-        return subjectRepo.save(subject);
+    private Subject convertToEntity(SubjectDTO subjectDTO) {
+        return convertor.convert(subjectDTO, Subject.class);
     }
 
-    public Subject findById(int id) {
-        return subjectRepo.findById(id);
+    private SubjectDTO convertToDto(Subject subject) {
+        return convertor.convert(subject, SubjectDTO.class);
     }
 
-    public List<Subject> findAll() {
-        return subjectRepo.findAll();
+    private List<SubjectDTO> convertToDtoList(List<Subject> subjectList) {
+        return convertor.convertList(subjectList, SubjectDTO.class);
+    }
+    public void save(SubjectDTO subjectDTO) {
+        Subject subject = convertToEntity(subjectDTO);
+        subjectRepo.save(subject);
     }
 
-    public Subject findByName(String name) {
-        return subjectRepo.findByName(name);
+    public SubjectDTO findById(int id) {
+        Subject subject = subjectRepo.findById(id);
+        return convertToDto(subject);
+    }
+
+    public List<SubjectDTO> findAll() {
+        List<Subject> subjectList = subjectRepo.findAll();
+        return convertToDtoList(subjectList);
+    }
+
+    public SubjectDTO findByName(String name) {
+        Subject subject = subjectRepo.findByName(name);
+        return convertToDto(subject);
     }
 }

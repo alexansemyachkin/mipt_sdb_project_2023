@@ -1,5 +1,6 @@
 package ru.mipt.rea.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import ru.mipt.rea.models.Subject;
-import ru.mipt.rea.models.User;
+import ru.mipt.rea.dto.SubjectDTO;
+import ru.mipt.rea.dto.UserDTO;
 import ru.mipt.rea.service.SubjectService;
 import ru.mipt.rea.service.UserServiceImpl;
 
@@ -18,14 +19,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/student")
 @SessionAttributes("userId")
+@AllArgsConstructor
 public class StudentController {
 
 
-    @Autowired
-    private UserServiceImpl userService;
+    private final UserServiceImpl userService;
 
-    @Autowired
-    private SubjectService subjectService;
+    private final SubjectService subjectService;
 
 
     @ModelAttribute
@@ -37,13 +37,13 @@ public class StudentController {
 
     @ModelAttribute
     public void subjects(Model model) {
-        List<Subject> subjects = subjectService.findAll();
+        List<SubjectDTO> subjects = subjectService.findAll();
         model.addAttribute("subjects", subjects);
     }
 
     @GetMapping
     public String StudentHomePage(@ModelAttribute("userId") int userId,  Model model) {
-        User user = userService.findById(userId);
+        UserDTO user = userService.findById(userId);
         model.addAttribute("user", user);
         return "student_home";
     }

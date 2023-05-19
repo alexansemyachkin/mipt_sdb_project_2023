@@ -8,15 +8,13 @@ import ru.mipt.rea.models.User;
 
 public interface UserService extends UserDetailsService {
 
-    User register(UserDTO dto);
+    void register(UserDTO dto);
 
-    User save(UserDTO dto);
+    void save(UserDTO dto);
 
-    User update(UserDTO dto);
+    UserDTO findByEmail(String email);
 
-    User findByEmail(String email);
-
-    User findById(int id);
+    UserDTO findById(int id);
 
     UserDetails loadUserByUsername(String username);
 

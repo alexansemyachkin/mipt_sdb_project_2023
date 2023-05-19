@@ -1,6 +1,6 @@
 package ru.mipt.rea.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,13 +23,12 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/registration")
+@AllArgsConstructor
 public class RegistrationController {
 
-    @Autowired
-    AuthenticationProvider authenticationProvider;
+    private final AuthenticationProvider authenticationProvider;
 
-    @Autowired
-    private UserServiceImpl userService;
+    private final UserServiceImpl userService;
 
 
     @ModelAttribute("user")

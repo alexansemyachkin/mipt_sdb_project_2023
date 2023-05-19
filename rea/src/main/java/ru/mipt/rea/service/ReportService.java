@@ -1,6 +1,6 @@
 package ru.mipt.rea.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.mipt.rea.dto.ReportDTO;
 import ru.mipt.rea.models.Report;
@@ -11,54 +11,57 @@ import ru.mipt.rea.repos.UserRepo;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ReportService {
 
-    @Autowired
-    private ReportRepo reportRepo;
+    private final ReportRepo reportRepo;
 
-    @Autowired
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
+
+    private final Convertor convertor;
 
 
-    public Report findById(int id) {
-        return reportRepo.findById(id);
+    private Report covertToEntity(ReportDTO reportDTO) {
+        return convertor.convert(reportDTO, Report.class);
     }
 
-    public List<Report> findBySubjectIdAndMarkEquals(int id, int mark) {
-        return reportRepo.findBySubjectIdAndMarkEquals(id, mark);
+    private ReportDTO convertToDto(Report report) {
+        return convertor.convert(report, ReportDTO.class);
     }
 
-    public Report findByStudentId(int id) {
-        return reportRepo.findByStudentId(id);
+    private List<ReportDTO> convertToDtoList(List<Report> reportList) {
+        return convertor.convertList(reportList, ReportDTO.class);
     }
 
+    public ReportDTO findById(int id) {
+        Report report = reportRepo.findById(id);
+        return convertToDto(report);
+    }
+
+    public List<ReportDTO> findBySubjectIdAndMarkEquals(int id, int mark) {
+        List<Report> reportList = reportRepo.findBySubjectIdAndMarkEquals(id, mark);
+        return convertToDtoList(reportList);
+    }
+
+    public ReportDTO findByStudentId(int id) {
+        Report report = reportRepo.findByStudentId(id);
+        return convertToDto(report);
+    }
 
 
     public List<User> findStudentsBySubjectId(int id) {
-        List<Report> reportList = findBySubjectIdAndMarkEquals(id, 0);
+        List<ReportDTO> reportList = findBySubjectIdAndMarkEquals(id, 0);
         return reportList.stream()
-                .map(Report::getStudent)
+                .map(ReportDTO::getStudent)
                 .map(user -> userRepo.findById(user.getId())) // преобразуем каждый объект User с помощью метода getUserById()
                 .toList();
     }
 
-    public Report save(ReportDTO reportDTO) {
-        Report report = new Report(reportDTO.getStudent(),
-                                   reportDTO.getSubject(),
-                                   reportDTO.getTicket(),
-                                   reportDTO.getSolution());
-        return reportRepo.save(report);
+    public void save(ReportDTO reportDTO) {
+        Report report = covertToEntity(reportDTO);
+        reportRepo.save(report);
     }
 
-    public Report update(ReportDTO reportDTO) {
-        Report report = new Report(reportDTO.getMark(),
-                reportDTO.getStudent(),
-                reportDTO.getExaminer(),
-                reportDTO.getSubject(),
-                reportDTO.getTicket(),
-                reportDTO.getSolution(),
-                reportDTO.getComment());
-        return reportRepo.save(report);
-    }
+
 
 }

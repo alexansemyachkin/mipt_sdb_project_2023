@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.mipt.rea.models.Subject;
-import ru.mipt.rea.models.Ticket;
 
 @Data
 @AllArgsConstructor
@@ -15,12 +14,6 @@ public class TicketDTO {
 
     private String question;
 
-    private Subject subject;
-
-    public TicketDTO(String question, Subject subject) {
-        this.question = question;
-        this.subject = subject;
-    }
-
+    private SubjectDTO subject;
 
 }
