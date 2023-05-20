@@ -13,23 +13,34 @@
     <title>Проверочная работа началась</title>
     <style>
         body {
-            margin: 0; /* Убираем отступы */
+            margin: 0;
+            background-color: #eae7e7;;
         }
         h1 {
-            background: #0d6efd; /* Цвет фона блока */
-            color: #ffe; /* Цвет текста */
-            margin: 0; /* Нулевые отступы вокруг текста */
-            padding: 10px; /* Поля вокруг текста */
+            color: #7E7E7E;
+            font: bold 30px Andale Mono, monospace;
+            letter-spacing: -0.05em;
+            line-height: 20px;
+            margin:10px 0 10px;
+            padding: 10px;
         }
         h3 {
-            margin: 0; /* Нулевые отступы вокруг текста */
-            padding: 10px; /* Поля вокруг текста */
+            font: bold 20px Andale Mono, monospace;
+            margin: 0;
+            padding: 10px;
+        }
+        div {
+            margin:10px;
         }
         label {
-            margin: 0; /* Нулевые отступы вокруг текста */
-            padding: 10px; /* Поля вокруг текста */
+            font: 15px Andale Mono, monospace;
+            margin: 10px;
         }
-
+        textarea {
+            margin:10px;
+            padding: 10px;
+            width:95%;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +55,9 @@
     <br>
     <textarea cols="80" id="latexInput" name="latexInput" rows="10" th:field="*{solution}"></textarea>
     <br>
-    <button onclick="compileLatex()" type="button" class="btn btn-secondary">Скомпилировать</button>
+    <div>
+        <button onclick="compileLatex()" type="button" class="btn btn-secondary">Скомпилировать</button>
+    </div>
     <br>
     <label for="output">Ваше решение:</label>
     <br>

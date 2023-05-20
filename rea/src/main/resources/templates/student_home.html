@@ -40,6 +40,29 @@
         </div>
     </div>
 </div>
+<style>
+    h2 {
+        font: bold 25px Andale Mono, monospace;
+        text-align: center;
+        color:#563D64;
+        font-size: calc(1vw + 0.5vh + 0.7vmin);
+    }
+    h3 {
+        font: bold 0px Andale Mono, monospace;
+        text-align: center;
+        color:#563D64;
+        font-size: calc(2vw + 1vh + 1vmin);
+    }
+    p, h6 {
+        font: 15px Andale Mono, monospace;
+        margin-bottom: 10px;
+        font-size: calc(1vw + 0.5vh + 0.5vmin);
+        vertical-align: bottom;
+    }
+    body {
+        background: #eae7e7;
+    }
+</style>
 <div class="container">
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
@@ -99,7 +122,9 @@
                                                 type="button"></button>
                                     </div>
                                     <div class="modal-body"
-                                         th:text="'Вы выбрали предмет : ' + ${subject.name} + '. Для подтверждения нажмите кнопку ниже'"></div>
+                                         th:text="'Вы выбрали предмет : ' + ${subject.name} + '.'"></div>
+                                    <div class="modal-body"
+                                         th:text="'Для подтверждения нажмите кнопку ниже'"></div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Назад
                                         </button>
@@ -118,7 +143,7 @@
         <h2 class="accordion-header" id="headingFour">
             <button aria-controls="collapseFour" aria-expanded="false" class="accordion-button collapsed"
                     data-bs-target="#collapseFour" data-bs-toggle="collapse" type="button">
-                <strong>Посмотреть результаты проерки</strong>
+                <strong>Посмотреть результаты проверки</strong>
             </button>
         </h2>
         <div aria-labelledby="headingFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
@@ -138,12 +163,14 @@
                                             type="button"></button>
                                 </div>
                                 <div class="modal-body"
-                                     th:text="'Вы выбрали для обзора предмет : ' + ${subject.name} + '. Для подтверждения нажмите кнопку ниже'"></div>
+                                     th:text="'Вы выбрали для обзора предмет : ' + ${subject.name} + '.'"></div>
+                                <div class="modal-body"
+                                    th:text="'Для подтверждения нажмите кнопку ниже'"></div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Назад
                                     </button>
                                     <a class="btn btn-primary" th:href=" '/student/review/' + ${subject.id}"
-                                       type="button">Посмотреть результаты проерки</a>
+                                       type="button">Посмотреть результаты проверки</a>
                                 </div>
                             </div>
                         </div>

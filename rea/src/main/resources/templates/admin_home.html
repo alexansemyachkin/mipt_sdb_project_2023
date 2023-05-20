@@ -62,8 +62,8 @@
                                             th:value="${iterator.name}"></option>
                                 </select>
                             </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary" style="margin-bottom: 2%;" type="submit">Добавить
+                            <div class="d-grid  col-6 mx-auto">
+                                <button class="btn btn-primary" style="margin-bottom" type="submit">Добавить
                                 </button>
                             </div>
                         </form>
@@ -75,7 +75,7 @@
             <h2 class="accordion-header" id="headingThree">
                 <button aria-controls="collapseThree" aria-expanded="false" class="accordion-button collapsed"
                         data-bs-target="#collapseThree" data-bs-toggle="collapse" type="button">
-                    <strong>Добавить нового перподователя</strong>
+                    <strong>Добавить нового экзаменатора</strong>
                 </button>
             </h2>
             <div aria-labelledby="headingThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
@@ -86,11 +86,11 @@
                         <hr class="bg-primary">
                         <form method="post" th:action="@{admin/add_examiner}" th:object="${examiner}">
                             <div class="mb-3">
-                                <label class="form-label" for="examiner_name">Имя преподователя</label>
+                                <label class="form-label" for="examiner_name">Имя преподавателя</label>
                                 <input class="form-control" id="examiner_name" th:field="*{name}">
-                                <label class="form-label" for="examiner_email">Почта преподователя</label>
+                                <label class="form-label" for="examiner_email">Почта преподавателя</label>
                                 <input class="form-control" id="examiner_email" th:field="*{email}">
-                                <label class="form-label" for="examiner_password">Пароль преподователя</label>
+                                <label class="form-label" for="examiner_password">Пароль преподавателя</label>
                                 <input class="form-control" id="examiner_password" th:field="*{password}">
                             </div>
                             <div class="d-grid  col-6 mx-auto">
@@ -103,6 +103,29 @@
             </div>
         </div>
     </div>
+    <style>
+        h2 {
+            font: bold 25px Andale Mono, monospace;
+            text-align: center;
+            color:#563D64;
+            font-size: calc(1vw + 0.5vh + 0.7vmin);
+        }
+        h3 {
+            font: bold 0px Andale Mono, monospace;
+            text-align: center;
+            color:#563D64;
+            font-size: calc(2vw + 1vh + 1vmin);
+        }
+        h6 {
+            font: 5px Andale Mono, monospace;
+            text-align: center;
+            font-size: calc(1vw + 1vh + 1vmin);
+        }
+        body {
+            background: #eae7e7;
+        }
+
+    </style>
 </div>
 <footer th:insert="parts/footer :: footer"></footer>
 </body>
