@@ -59,7 +59,7 @@
   </style>
 </head>
 <body>
-  <h1>Результаты проверки экзамена по билету:</h1>
+  <h1>Результаты проверки работы по билету:</h1>
   <h3 th:utext="${report.ticket.question}"></h3>
   <label> Ваше решение:
     <div th:text="${report.solution}" onload="compileLatex()"></div>
