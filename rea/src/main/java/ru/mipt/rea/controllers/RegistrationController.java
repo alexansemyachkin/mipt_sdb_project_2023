@@ -58,7 +58,7 @@ public class RegistrationController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return "redirect:/student";
         } catch (UserAlreadyExistsException exception) {
-            bindingResult.rejectValue("email", "error.user", "User with this username already exists");
+            bindingResult.rejectValue("email", "error.user", "Пользователь с таким логином уже существует");
             return "registration";
         }
     }
