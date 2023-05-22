@@ -47,7 +47,7 @@
                     <div class="container col-md-6 border border-primary rounded-3">
                         <h6 class="text-center">Добавить новый вопрос</h6>
                         <hr class="bg-primary">
-                        <form class="row g-3" method="post" th:action="@{home/addQuestion}">
+                        <form class="row g-3" method="post" th:action="@{admin/add_ticket}">
                             <div class="col-md-12">
                                 <label class="form-label" for="validationDefault01">Формулировка вопроса</label>
                                 <input class="form-control" id="validationDefault01" required th:field="*{question}"
