@@ -151,6 +151,7 @@
         }
         #content form { margin: 0 20px; position: relative }
         #content form input[type="email"],
+        #content form input[type="name"],
         #content form input[type="password"] {
             -webkit-border-radius: 3px;
             -moz-border-radius: 3px;
@@ -176,6 +177,7 @@
             width: 100%;
         }
         #content form input[type="email"]:focus,
+        #content form input[type="name"]:focus,
         #content form input[type="password"]:focus {
             -webkit-box-shadow: 0 0 2px #ed1c24 inset;
             -moz-box-shadow: 0 0 2px #ed1c24 inset;
@@ -187,8 +189,8 @@
             outline: none;
         }
         #email { background-position: 8px 11px !important }
+        #name { background-position: 8px 11px !important }
         #password { background-position: 8px -51px !important }
-        #password_2 { background-position: 8px -51px !important }
         #content form div a {
             color: #004a80;
             float: right;
@@ -209,11 +211,11 @@
                     <span class="error" style="color:red" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></span>
                 </p>
                 <p>
-                    <input autofocus="" class="form-control" id="password" name="password" placeholder="Введите пароль" required="" type="password">
+                    <input autofocus="" class="form-control" id="name" name="name" placeholder="Введите имя" required="" type="name">
                     <span class="error" style="color:red" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
                 </p>
                 <p>
-                    <input class="form-control" id="password_2" name="password" placeholder="Повторите пароль" required="" type="password">
+                    <input class="form-control" id="password" name="password" placeholder="Введите пароль" required="" type="password">
                     <span class="error" style="color:red" th:errors="*{password}"
                           th:if="${#fields.hasErrors('password')}"></span>
                 </p>
