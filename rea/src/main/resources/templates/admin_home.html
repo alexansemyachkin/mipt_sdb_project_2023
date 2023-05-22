@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="parts/head :: head"></head>
+<title>Админ</title>
+<meta charset="UTF-8">
+<body>
+<header th:insert="parts/header :: header"></header>
+<div class="container" style="margin-top: 5%;">
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button aria-controls="collapseTwo" aria-expanded="false" class="accordion-button collapsed"
+                        data-bs-target="#collapseOne" data-bs-toggle="collapse" type="button">
+                    <strong>Добавить новый предмет</strong>
+                </button>
+            </h2>
+            <div aria-labelledby="headingOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                 id="collapseOne">
+                <div class="accordion-body">
+                    <div class="container col-md-5 border border-primary rounded-3">
+                        <h6 class="text-center">Добавить новый предмет</h6>
+                        <hr class="bg-primary">
+                        <form method="post" th:action="@{admin/add_subject}" th:object="${subject}">
+                            <div class="mb-3">
+                                <label class="form-label" for="subject_name">Название предмета</label>
+                                <input class="form-control" id="subject_name" th:field="*{name}">
+                            </div>
+                            <div class="d-grid  col-6 mx-auto">
+                                <button class="btn btn-primary" style="margin-bottom: 2%;" type="submit">Добавить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button aria-controls="collapseTwo" aria-expanded="false" class="accordion-button collapsed"
+                        data-bs-target="#collapseTwo" data-bs-toggle="collapse" type="button">
+                    <strong>Добавить новый вопрос</strong>
+                </button>
+            </h2>
+            <div aria-labelledby="headingTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                 id="collapseTwo">
+                <div class="accordion-body">
+                    <div class="container col-md-6 border border-primary rounded-3">
+                        <h6 class="text-center">Добавить новый вопрос</h6>
+                        <hr class="bg-primary">
+                        <form class="row g-3" method="post" th:action="@{home/addQuestion}">
+                            <div class="col-md-12">
+                                <label class="form-label" for="validationDefault01">Формулировка вопроса</label>
+                                <input class="form-control" id="validationDefault01" required th:field="*{question}"
+                                       th:object="${ticket}" type="text">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="validationDefault06">Предмет</label>
+                                <select class="form-select" id="validationDefault06" required
+                                        th:field="*{name}" th:object="${subject}">
+                                    <option th:each="iterator : ${subject_list}" th:text="${iterator.name}"
+                                            th:value="${iterator.name}"></option>
+                                </select>
+                            </div>
+                            <div class="d-grid  col-6 mx-auto">
+                                <button class="btn btn-primary" style="margin-bottom:2%" type="submit">Добавить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button aria-controls="collapseThree" aria-expanded="false" class="accordion-button collapsed"
+                        data-bs-target="#collapseThree" data-bs-toggle="collapse" type="button">
+                    <strong>Добавить нового проверяющего</strong>
+                </button>
+            </h2>
+            <div aria-labelledby="headingThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                 id="collapseThree">
+                <div class="accordion-body">
+                    <div class="container col-md-5 border border-primary rounded-3">
+                        <h6 class="text-center">Добавить профиль нового проверяющего</h6>
+                        <hr class="bg-primary">
+                        <form method="post" th:action="@{admin/add_examiner}" th:object="${examiner}">
+                            <div class="mb-3">
+                                <label class="form-label" for="examiner_name">Имя преподавателя</label>
+                                <input class="form-control" id="examiner_name" th:field="*{name}">
+                                <label class="form-label" for="examiner_email">Почта преподавателя</label>
+                                <input class="form-control" id="examiner_email" th:field="*{email}">
+                                <label class="form-label" for="examiner_password">Пароль преподавателя</label>
+                                <input class="form-control" id="examiner_password" th:field="*{password}">
+                            </div>
+                            <div class="d-grid  col-6 mx-auto">
+                                <button class="btn btn-primary" style="margin-bottom: 2%;" type="submit">Добавить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            margin: 0;
+            background-color: #eae7e7;
+            background-image: url("https://img.freepik.com/free-photo/white-concrete-wall_53876-92803.jpg?w=996&t=st=1684674703~exp=1684675303~hmac=711cefd44facf53ef4a36854ca575a0074483b1575e0475cdf8db955a90f247d");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        h2 {
+            font: bold 25px Andale Mono, monospace;
+            text-align: center;
+            color:#563D64;
+            font-size: calc(1vw + 0.5vh + 0.7vmin);
+        }
+        h3 {
+            font: bold 0px Andale Mono, monospace;
+            text-align: center;
+            color:#563D64;
+            font-size: calc(2vw + 1vh + 1vmin);
+        }
+        h6 {
+            font: 5px Andale Mono, monospace;
+            text-align: center;
+            font-size: calc(1vw + 1vh + 1vmin);
+        }
+        body {
+            background: #eae7e7;
+        }
+
+    </style>
+</div>
+<footer th:insert="parts/footer :: footer"></footer>
+</body>
+</html>

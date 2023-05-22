@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="parts/head :: head">
+    <title>Добро пожаловать</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .fig {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<style>
+    .btn {
+        margin-top:100px;
+        filter: saturate(70%);
+    }
+    h1 {
+        font: bold 0px Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-size: calc(2vw + 1.5vh + 1vmin);
+    }
+</style>
+<p class="fig">
+    <img src="/images/mipt.jpg" class="mx-auto d-block"
+    width="250" height="150" alt=" ">
+</p>
+<div style="text-align: center; margin-left:19%; margin-right: 22%; margin-top: 5%;">
+    <h1>Добро пожаловать в онлайн систему проверочных работ</h1>
+    <div class="mb-5">
+        <a class="btn btn-primary btn-lg px-4" href="/registration">Зарегистрироваться</a>
+        <a class="btn btn-primary btn-lg px-4" href="/login">Войти</a>
+    </div>
+</div>
+<footer th:insert="parts/footer :: footer"></footer>
+</body>
+</html>
